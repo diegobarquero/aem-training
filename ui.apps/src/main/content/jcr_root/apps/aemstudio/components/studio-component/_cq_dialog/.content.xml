@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+    jcr:primaryType="nt:unstructured"
+    jcr:title="Studio Component Properties"
+    sling:resourceType="cq/gui/components/authoring/dialog">
+    <content
+        jcr:primaryType="nt:unstructured"
+        sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns">
+        <items jcr:primaryType="nt:unstructured">
+            <column
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="granite/ui/components/coral/foundation/container">
+                <items jcr:primaryType="nt:unstructured">
+                  <tabs
+                      jcr:primaryType="nt:unstructured"
+                      sling:resourceType="granite/ui/components/coral/foundation/tabs"
+                      maximized="{Boolean}true">
+                        <items jcr:primaryType="nt:unstructured">
+                            <inputfields
+                              jcr:primaryType="nt:unstructured"
+                              jcr:title="Input fields"
+                              sling:resourceType="granite/ui/components/coral/foundation/container"
+                              margin="{Boolean}true">
+                                <items jcr:primaryType="nt:unstructured">
+                                  <columns
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns"
+                                    margin="{Boolean}true">
+                                      <items jcr:primaryType="nt:unstructured">
+                                          <column
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/container">
+                                              <items jcr:primaryType="nt:unstructured">
+                                                <!--  Place your components / dialog fields here  -->
+                                                <textfield
+                                                  jcr:primaryType="nt:unstructured"
+                                                  sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                  fieldLabel="Textfield"
+                                                  fieldDescription="This is a Textfield."
+                                                  name="./textfield"/>
+
+                                                <password
+                                                  jcr:primaryType="nt:unstructured"
+                                                  sling:resourceType="granite/ui/components/coral/foundation/form/password"
+                                                  fieldLabel="Password"
+                                                  fieldDescription="This is a Password."
+                                                  name="./password"/>
+
+                                                <textarea
+                                                  jcr:primaryType="nt:unstructured"
+                                                  sling:resourceType="granite/ui/components/coral/foundation/form/textarea"
+                                                  fieldLabel="Textarea"
+                                                  emptyText="Some placeholder text"
+                                                  fieldDescription="This is a Textarea."
+                                                  name="./textarea"/>
+
+                                                <numberfield
+                                                  jcr:primaryType="nt:unstructured"
+                                                  sling:resourceType="granite/ui/components/coral/foundation/form/numberfield"
+                                                  fieldLabel="Numberfield"
+                                                  fieldDescription="This is a Numberfield."
+                                                  name="./numberfield"
+                                                  min="{Long}1"
+                                                  max="{Long}10"
+                                                  step="{Double}1"/>
+
+                                                <pathfield
+                                                  jcr:primaryType="nt:unstructured"
+                                                  sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+                                                  fieldLabel="Pathfield"
+                                                  fieldDescription="This is a Pathfield."
+                                                  rootpath="./content/aemstudio"
+                                                  name="./pathfield"/>
+
+                                                <pathbrowser 
+                                                  jcr:primaryType="nt:unstructured"
+                                                  sling:resourceType="granite/ui/components/coral/foundation/form/pathbrowser"
+                                                  fieldLabel="Pathbrowser."
+                                                  fieldDescription="This is a Pathbrowser."
+                                                  rootPath="/content/aemstudio/"
+                                                  name="./pathbrowser" />
+
+                                                <datepicker
+                                                  jcr:primaryType="nt:unstructured"
+                                                  sling:resourceType="granite/ui/components/coral/foundation/form/datepicker"
+                                                  displayedFormat="MM-DD-YYYY HH:mm"
+                                                  fieldLabel="Datepicker"
+                                                  fieldDescription="This is a Datepicker."
+                                                  name="./datepicker"
+                                                  type="datetime"
+                                                  typeHint="Date"/>
+
+                                                <colorpicker
+                                                  jcr:primaryType="nt:unstructured"
+                                                  sling:resourceType="granite/ui/components/coral/foundation/form/colorfield"
+                                                  fieldLabel="Colorpicker"
+                                                  fieldDescription="This is a Colorpicker."
+                                                  name="./colorpicker"/>
+
+                                                <userpicker
+                                                  jcr:primaryType="nt:unstructured"
+                                                  sling:resourceType="granite/ui/components/coral/foundation/form/userpicker"
+                                                  fieldLabel="Userpicker"
+                                                  fieldDescription="This is a Userpicker."
+                                                  hideServiceUsers="{Boolean}true"
+                                                  impersonatesOnly="{Boolean}false"
+                                                  name="./userpicker"/>
+                                              </items>
+                                          </column>
+                                      </items>
+                                  </columns>
+                                </items>
+                            </inputfields>
+
+                            <assetsupload
+                              jcr:primaryType="nt:unstructured"
+                              jcr:title="Assets Upload"
+                              sling:resourceType="granite/ui/components/coral/foundation/container"
+                              margin="{Boolean}true">
+                                <items jcr:primaryType="nt:unstructured">
+                                  <columns
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns"
+                                    margin="{Boolean}true">
+                                      <items jcr:primaryType="nt:unstructured">
+                                          <column
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/container">
+                                              <items jcr:primaryType="nt:unstructured">
+                                                  <!--  Place your components / dialog fields here  -->
+                                                  <assetupload
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="cq/gui/components/authoring/dialog/fileupload"
+                                                    allowUpload="{Boolean}true"
+                                                    autoStart="{Boolean}true"
+                                                    class="cq-droptarget"
+                                                    fileNameParameter="./fileName"
+                                                    fileReferenceParameter="./fileReference"
+                                                    mimeTypes="[image/gif,image/jpeg,image/png,image/tiff,image/svg+xml]"
+                                                    multiple="{Boolean}false"
+                                                    name="./file"
+                                                    title="Upload Asset"
+                                                    uploadUrl="/content/dam/aemstudio"
+                                                    useHTML5="{Boolean}true"/>
+                                              </items>
+                                          </column>
+                                      </items>
+                                  </columns>
+                                </items>
+                            </assetsupload>
+                        </items>
+                  </tabs>
+                </items>
+            </column>
+        </items>
+    </content>
+</jcr:root>
