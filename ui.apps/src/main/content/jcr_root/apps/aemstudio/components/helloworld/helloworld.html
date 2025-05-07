@@ -25,23 +25,3 @@
         <pre class="cmp-helloworld__item-output"data-cmp-hook-helloworld="model">${model.message}</pre>
     </div>
 </div>
-
-<sly data-sly-use.template="templates.html" />
-
-<sly data-sly-call="${template.temp1 @ title='Template 1', text=properties.text}"/>
-<sly data-sly-call="${template.temp2 @ title='Template 2', text=properties.text}"/>
-<sly data-sly-call="${template.temp3 @ title='Template 3', text=properties.text}"/>
-
-
-<!--
-<sly data-sly-resource="${ 'childStudioComponent' @ resourceType='aemstudio/components/studio-component' }"></sly>
--->
-
-
-<!-- 
-<sly data-sly-unwrap data-sly-resource="${@path='par', resourceType='foundation/components/parsys'}"></sly>
-
-<div class="main-nav-author" data-sly-test="${wcmmode.edit}">
-  <p class="author-message" style="text-align: center; font-size: 11px; font-weight: 400; color:#777;">Please add the menu items in the parsys above using the "Global Header - Main Navigation" component"</p>
-</div>
--->
