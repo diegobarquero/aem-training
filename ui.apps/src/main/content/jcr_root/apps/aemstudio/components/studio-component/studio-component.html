@@ -1,0 +1,15 @@
+<p>Studio Component</p>
+<p>${properties.textfield}</p>
+
+<p>Value map</p>
+<ul data-sly-list.entry="${resource.valueMap}">
+    <li>${entry}: ${resource.valueMap[entry]}</li>
+</ul>
+
+<sly data-sly-test="${wcmmode.edit || wcmmode.preview}">
+    <pre>{
+      <sly data-sly-list.entry="${resource.valueMap}">
+        "${entry}": "${resource.valueMap[entry]}"<sly data-sly-test="${!entryList.last}">,</sly>
+      </sly>
+    }</pre>
+  </sly>
