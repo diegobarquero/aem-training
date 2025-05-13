@@ -15,7 +15,106 @@
                 sling:resourceType="granite/ui/components/coral/foundation/tabs"
                 maximized="{Boolean}true">
                 <items jcr:primaryType="nt:unstructured"
-                       sling:hideChildren="[*]">
+                        sling:hideChildren="[*]">
+                    <testfield
+                        jcr:primaryType="nt:unstructured"
+                        jcr:title="Test Fields"
+                        sling:resourceType="granite/ui/components/coral/foundation/container"
+                        margin="{Boolean}true">
+                        <items jcr:primaryType="nt:unstructured">
+                            <columns
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns"
+                                margin="{Boolean}true">
+                                <items jcr:primaryType="nt:unstructured">
+                                    <column
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/container">
+                                        <items jcr:primaryType="nt:unstructured">
+                                          <!-- Fields goes here -->
+                                            <title
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                fieldLabel="Page title"
+                                                fieldDescription="This is a Textfield."
+                                                name="./title"
+                                                required="{Boolean}True"/>
+
+                                            <cards
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/multifield"
+                                                fieldDescription="Click '+' to add a new card" 
+                                                composite="{Boolean}true">
+                                                <field
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="granite/ui/components/coral/foundation/container"
+                                                    name="./cards">
+                                                    <items jcr:primaryType="nt:unstructured">
+                                                        <cardheadingtype
+                                                            jcr:primaryType="nt:unstructured"
+                                                            sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                                                            fieldLabel="Select Heading Type"
+                                                            fieldDescription="This is a Select Dropdown."
+                                                            name="./cardheadingtype">
+                                                            <items jcr:primaryType="nt:unstructured">
+                                                                <h1
+                                                                    jcr:primaryType="nt:unstructured"
+                                                                    text="H1"
+                                                                    value="h1"/>
+                                                                <h2
+                                                                    jcr:primaryType="nt:unstructured"
+                                                                    text="H2"
+                                                                    value="h2"/>
+                                                                <h3
+                                                                    jcr:primaryType="nt:unstructured"
+                                                                    text="H3"
+                                                                    value="h3"/>
+                                                            </items>
+                                                        </cardheadingtype>
+
+                                                        <cardtitle
+                                                            jcr:primaryType="nt:unstructured"
+                                                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                            fieldLabel="Page title"
+                                                            fieldDescription="This is a Textfield."
+                                                            name="./cardtitle"
+                                                            required="{Boolean}True"/>
+
+                                                        <cardthumb 
+                                                            jcr:primaryType="nt:unstructured"
+                                                            sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+                                                            fieldLabel="Thumbnail"
+                                                            fieldDescription="Select the card image"
+                                                            forceSelection="{Boolean}true"
+                                                            name="./cardthumb" 
+                                                            rootPath="/content/dam/aemstudio" />
+
+                                                        <cardlink
+                                                            jcr:primaryType="nt:unstructured"
+                                                            sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+                                                            fieldLabel="Link"
+                                                            fieldDescription="Select the card link"
+                                                            forceSelection="{Boolean}true"
+                                                            name="./cardlink" 
+                                                            rootPath="/content/aemstudio" />
+
+                                                        <carddescription
+                                                            jcr:primaryType="nt:unstructured"
+                                                            sling:resourceType="granite/ui/components/coral/foundation/form/textarea"
+                                                            fieldLabel="Description"
+                                                            emptyText="Some placeholder text"
+                                                            fieldDescription="This is a Textarea."
+                                                            name="./carddescription"/>
+                                                    </items>
+                                                </field>
+                                            </cards>
+                                        </items>
+                                    </column>
+                                </items>
+                            </columns>
+                        </items>
+                    </testfield>
+
                     <inputfields
                         jcr:primaryType="nt:unstructured"
                         jcr:title="Input Fields"
@@ -36,8 +135,8 @@
                                                 sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                                                 fieldLabel="Textfield"
                                                 fieldDescription="This is a Textfield."
-                        name="./textfield"
-                        required="{Boolean}True"/>
+                                                name="./textfield"
+                                                required="{Boolean}True"/>
 
                                             <password
                                                 jcr:primaryType="nt:unstructured"
@@ -455,8 +554,8 @@
                                                                 sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                                                                 fieldLabel="Text Value"
                                                                 fieldDescription="This is a Textfield."
-                                name="./textvalueAccodion"
-                                required="{Boolean}true"/>
+                                                                name="./textvalueAccodion"
+                                                                required="{Boolean}true"/>
                                                             <textvalue2
                                                                 jcr:primaryType="nt:unstructured"
                                                                 sling:resourceType="granite/ui/components/coral/foundation/form/textfield"

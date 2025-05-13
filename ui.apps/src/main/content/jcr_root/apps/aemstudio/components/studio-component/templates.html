@@ -1,0 +1,18 @@
+<template data-sly-template.card1="${ @ titleType, title, image}">
+  <p>Card 1</p>
+  <h2 class="heading-title" data-sly-test="${title}" data-sly-element="${titleType}">${title}</h2>
+  <img class="img" data-sly-test="${image}" src="${image}" alt="alt text" />
+</template>
+
+<template data-sly-template.card2="${ @ titleType, title, description}">
+  <p>Card 2</p>
+  <h2 class="heading-title" data-sly-element="${titleType}" class="heading-title">${title}</h2>
+  <p class="description">${description}</p>
+</template>
+
+<template data-sly-template.card3="${ @ titleType, title, image, link, description}">
+  <p>Card 3</p>
+  <h2 class="heading-title" data-sly-test="${title}" data-sly-element="${titleType}" class="heading-title">${title}</h2>
+  <a class="link" data-sly-test="${link}" href="${link}"><img data-sly-test="${image}" src="${image}" alt="alt text" /></a>
+  <p class="description" data-sly-test="${description}">${description}</p>
+</template>
