@@ -37,14 +37,15 @@
                                                 sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                                                 fieldLabel="Page title"
                                                 fieldDescription="This is a Textfield."
-                                                name="./title"
-                                                required="{Boolean}True"/>
+                                                name="./title"/>
+                                                <!-- required="{Boolean}True"/> -->
 
                                             <cards
                                                 jcr:primaryType="nt:unstructured"
                                                 sling:resourceType="granite/ui/components/coral/foundation/form/multifield"
                                                 fieldDescription="Click '+' to add a new card" 
-                                                composite="{Boolean}true">
+                                                composite="{Boolean}true"
+                                                validation="multifield-limit-min:1-max:6">
                                                 <field
                                                     jcr:primaryType="nt:unstructured"
                                                     sling:resourceType="granite/ui/components/coral/foundation/container"
