@@ -1,0 +1,43 @@
+.ramp-card {
+    box-sizing: border-box;
+    width: 300px;
+    padding: 20px;
+    border-radius: 10px;
+    background: #ffffff;
+
+    h3 {
+        color: #000;
+        font-size: 2rem;
+        margin: 0;
+    }
+
+    p {
+        color: #575b65;
+        ;
+    }
+
+    a {
+        text-decoration: none;
+        background-color: #012437;
+        color: #ffffff;
+        padding: 10px 30px;
+        border-radius: 20px;
+        font-size: 0.7rem;
+        width: fit-content;
+    }
+
+    a:hover {
+        opacity: 0.8;
+    }
+
+    .ramp-card-img img {
+        width: 100%;
+        height: 150px;
+    }
+
+    .ramp-card-multilinks {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+}
