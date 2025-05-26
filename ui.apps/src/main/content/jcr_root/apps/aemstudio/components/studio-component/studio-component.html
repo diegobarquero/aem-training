@@ -1,6 +1,13 @@
 <sly data-sly-use.templates="core/wcm/components/commons/v1/templates.html" />
 <sly data-sly-call="${templates.placeholder @ isEmpty = !properties.title}" />
 
+<sly data-sly-use.rangeModel="${'com.adobe.aem.studio.core.models.RangeList' @ max=5}" />
+
+<ul data-sly-list.item="${rangeModel.numbers}">
+  <li>${item}</li>
+</ul>
+
+
 <div class="studio-component" data-sly-test="${properties.title}">
   <h1>${properties.title}</h1>
 

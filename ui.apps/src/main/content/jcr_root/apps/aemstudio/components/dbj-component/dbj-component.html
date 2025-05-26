@@ -1,7 +1,7 @@
 <div class="dbj-component">
-  <div class="dbj-card">
+  <div class="dbj-card" data-sly-test="${properties.cardthumb}">
     <div class="card-img"><img src="${properties.cardthumb}" alt /></div>
-    <p>${properties.cardtile}</p>
+    <h3>${properties.cardtitle}</h3>
     <p>${properties.carddescription}</p>
     <a class="card-link" href="${properties.cardlink}">${properties.btnlabel}</a>
   </div><!-- end.dbj-card -->
