@@ -1,10 +1,19 @@
 .dbj-card {
+  width: 33%;
+  max-width: 250px;
+  margin: 0 auto;
+  padding: 20px;
+  text-align: center;
+  color: #000000;
   border-radius: 10px;
   background: #ffffff;
 
   a {
+    padding: 10px;
     color: #fff;
-    border-radius: 25px;
-    background: blue;
+    display: inline-block;
+    border-radius: 5px;
+    box-shadow: 0px 0px 15px #999999;
+    background: #333333;
   }
 }

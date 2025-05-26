@@ -1,23 +1,30 @@
-<h1>${properties.title}</h1>
+<sly data-sly-use.templates="core/wcm/components/commons/v1/templates.html" />
+<sly data-sly-call="${templates.placeholder @ isEmpty = !properties.title}" />
 
-<p>Multifield</p>
+<div class="studio-component" data-sly-test="${properties.title}">
+  <h1>${properties.title}</h1>
 
-<div data-sly-list.cardMultifield="${resource.getChildren}">
-  <div data-sly-test="${cardMultifield.name == 'cards'}">
-     <ul data-sly-list.card="${cardMultifield.getChildren}">
+  <p>Multifield</p>
+
+  <div data-sly-list.cardMultifield="${resource.getChildren}">
+    <div data-sly-test="${cardMultifield.name == 'cards'}">
+      <ul data-sly-list.card="${cardMultifield.getChildren}">
+        <sly
+          data-sly-use.model="${'com.adobe.aem.studio.core.models.PagePropertiesByPath' @ pagePath = card.cardlink}" />
+        <sly data-sly-test.pageProperties="${model.pageProperties}"></sly>
         <p>Cards</p>
         <li data-sly-test.cardtitle="${card.cardtitle}">Title: ${cardtitle}</li>
         <li data-sly-test.cardheadingtype="${card.cardheadingtype}">Heading: ${cardheadingtype}</li>
         <li data-sly-test.cardthumb="${card.cardthumb}">Image: ${cardthumb}</li>
         <li data-sly-test.cardlink="${card.cardlink}">Link: ${cardlink}</li>
         <li data-sly-test.carddescription="${card.carddescription}">Description: ${carddescription}</li>
-     </ul>
-   </div>
-</div>
+      </ul>
+    </div>
+  </div>
 
-<sly data-sly-list.cardMultifield="${resource.getChildren}">
-  <sly data-sly-test="${cardMultifield.name == 'cards'}">
-     <sly data-sly-list.card="${cardMultifield.getChildren}">
+  <sly data-sly-list.cardMultifield="${resource.getChildren}">
+    <sly data-sly-test="${cardMultifield.name == 'cards'}">
+      <sly data-sly-list.card="${cardMultifield.getChildren}">
         <sly data-sly-test.cardtitle="${card.cardtitle}">
           <sly data-sly-test.cardtitle="${card.cardtitle}">Title: ${cardtitle}</sly>
           <sly data-sly-test.cardheadingtype="${card.cardheadingtype}">Heading: ${cardheadingtype}</sly>
@@ -25,48 +32,66 @@
           <sly data-sly-test.cardlink="${card.cardlink}">Link: ${cardlink}</sly>
           <sly data-sly-test.carddescription="${card.carddescription}">Description: ${carddescription}</sly>
         </sly>
-     </sly>
-   </sly>
-</sly>
+      </sly>
+    </sly>
+  </sly>
 
-<sly data-sly-use.template="templates.html" />
+  <sly data-sly-use.template="templates.html" />
 
-<sly data-sly-list.cardMultifield="${resource.getChildren}">
-  <sly data-sly-test="${cardMultifield.name == 'cards'}">
-     <sly data-sly-list.card="${cardMultifield.getChildren}">
+  <sly data-sly-list.cardMultifield="${resource.getChildren}">
+    <sly data-sly-test="${cardMultifield.name == 'cards'}">
+      <sly data-sly-list.card="${cardMultifield.getChildren}">
         <sly data-sly-test="${cardList.index == 0}">
-          <sly data-sly-call="${template.card1 @ titleType=card.cardheadingtype, title=card.cardtitle, image=card.cardthumb}"/>
+          <sly
+            data-sly-call="${template.card1 @ titleType=card.cardheadingtype, title=card.cardtitle, image=card.cardthumb}" />
         </sly>
 
         <sly data-sly-test="${cardList.index == 1}">
-          <sly data-sly-call="${template.card2 @ titleType=card.cardheadingtype, title=card.cardtitle, description=card.carddescription}"/>
+          <sly
+            data-sly-call="${template.card2 @ titleType=card.cardheadingtype, title=card.cardtitle, description=card.carddescription}" />
         </sly>
 
         <sly data-sly-test="${cardList.index == 2}">
-          <sly data-sly-call="${template.card3 @ titleType=card.cardheadingtype, title=card.cardtitle, image=card.cardthumb, link=card.cardlink, description=card.carddescription}"/>
+          <sly
+            data-sly-call="${template.card3 @ titleType=card.cardheadingtype, title=card.cardtitle, image=card.cardthumb, link=card.cardlink, description=card.carddescription}" />
         </sly>
-     </sly>
-   </sly>
-</sly>
+      </sly>
+    </sly>
+  </sly>
 
-<sly data-sly-unwrap data-sly-resource="${@path='par', resourceType='foundation/components/parsys'}"></sly>
+  <!--
+  *** Child parsys 
+  -->
 
-<div class="main-nav-author" data-sly-test="${wcmmode.edit}">
-  <p class="author-message" style="text-align: center; font-size: 11px; font-weight: 400; color:#777;">Please add Component X in the parsys above</p>
-</div>
+  <!--*
+  <sly data-sly-unwrap data-sly-resource="${@path='par', resourceType='foundation/components/parsys'}"></sly>
 
-<p>Helloworld component</p>
-<sly data-sly-resource="${ 'childHelloworldComponent' @ resourceType='aemstudio/components/helloworld' }"></sly>
+  <div class="main-nav-author" data-sly-test="${wcmmode.edit}">
+    <p class="author-message" style="text-align: center; font-size: 11px; font-weight: 400; color:#777;">Please add
+      Component X in the parsys above</p>
+  </div>
+  *-->
 
-<p>Value map</p>
-<ul data-sly-list.entry="${resource.valueMap}">
+
+  <!--
+  *** Specific child component
+  -->
+  <!--*
+  <p>Helloworld component</p>
+  <sly data-sly-resource="${ 'childHelloworldComponent' @ resourceType='aemstudio/components/helloworld' }"></sly>
+  *-->
+
+  <p>Value map</p>
+  <ul data-sly-list.entry="${resource.valueMap}">
     <li>${entry}: ${resource.valueMap[entry]}</li>
-</ul>
+  </ul>
 
-<sly data-sly-test="${wcmmode.edit || wcmmode.preview}">
+  <sly data-sly-test="${wcmmode.edit || wcmmode.preview}">
     <pre>{
       <sly data-sly-list.entry="${resource.valueMap}">
         "${entry}": "${resource.valueMap[entry]}"<sly data-sly-test="${!entryList.last}">,</sly>
       </sly>
-    }</pre>
-</sly>
+      }
+    </pre>
+  </sly>
+</div><!-- end.studio-component -->
