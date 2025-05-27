@@ -1,0 +1,49 @@
+.fac-card {
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    padding: 16px;
+    max-width: 300px;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+
+.fac-card .card-img img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 4px;
+}
+
+.fac-card .card-title {
+    margin: 12px 0 8px;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #111;
+}
+
+.fac-card .card-description {
+    margin-bottom: 16px;
+    font-size: 0.875rem;
+    line-height: 1.4;
+    color: #555;
+}
+
+.fac-card .card-link {
+    display: inline-block;
+    background-color: #005f73;
+    color: #fff;
+    text-decoration: none;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 0.875rem;
+    transition: background-color 0.2s;
+}
+
+.fac-card .card-link:hover {
+    background-color: #0a9396;
+}
+
+.fac-card .card-link.clicked {
+    background-color: #ae2012;
+}
