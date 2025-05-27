@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root
+    xmlns:sling="http://sling.apache.org/jcr/sling/1.0"
+    xmlns:granite="http://www.adobe.com/jcr/granite/1.0"
+    xmlns:jcr="http://www.jcp.org/jcr/1.0"
+    xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+    xmlns:cq="http://www.day.com/jcr/cq/1.0"
+    jcr:primaryType="nt:unstructured"
+    jcr:title="FMJ Component"
+    sling:resourceType="cq/gui/components/authoring/dialog">
+
+    <content
+        jcr:primaryType="nt:unstructured"
+        sling:resourceType="granite/ui/components/coral/foundation/container">
+
+        <items jcr:primaryType="nt:unstructured">
+
+            <!-- Product Image -->
+            <productImage
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+                fieldLabel="Product Image"
+                fieldDescription="Select an image for your product"
+                name="./productImage"
+                rootPath="/content/dam"
+                required="{Boolean}true" />
+
+            <!-- Product Title -->
+            <productTitle
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                fieldLabel="Product Title"
+                fieldDescription="Enter your product title"
+                name="./productTitle"
+                required="{Boolean}true" />
+
+            <!-- Product Description -->
+            <productDescription
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="granite/ui/components/coral/foundation/form/textarea"
+                fieldLabel="Description"
+                fieldDescription="Short description (1-3 lines max)"
+                name="./productDescription"
+                required="{Boolean}true"
+                maxlength="180" />
+
+            <!-- Button Text -->
+            <buttonText
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                fieldLabel="CTA Button Text"
+                fieldDescription="e.g., Buy Now, Learn More"
+                name="./buttonText"
+                required="{Boolean}true" />
+
+            <!-- Button Link -->
+            <buttonLink
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+                fieldLabel="CTA Button Link"
+                fieldDescription="Link for the call-to-action button"
+                name="./buttonLink"
+                rootPath="/content"
+                required="{Boolean}true" />
+
+        </items>
+    </content>
+</jcr:root>
