@@ -12,15 +12,22 @@ import java.util.List;
 public class RangeList {
 
     @Inject
-    private int max;
+    private String maxNumber;
 
     private List<Integer> numbers;
 
     @PostConstruct
     protected void init() {
         numbers = new ArrayList<>();
-        for (int i = 0; i < max; i++) {
-            numbers.add(i);
+
+        try {
+            int max = Integer.parseInt(maxNumber);
+
+            for (int i = 0; i < max; i++) {
+                numbers.add(i);
+            }
+        } catch (NumberFormatException e) {
+          // Return string error
         }
     }
 
