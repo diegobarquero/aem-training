@@ -1,8 +1,8 @@
 <sly data-sly-use.templates="core/wcm/components/commons/v1/templates.html" />
 <sly data-sly-call="${templates.placeholder @ isEmpty = !properties.title}" />
 
-<sly data-sly-use.rangeModel="${'com.adobe.aem.studio.core.models.RangeList' @ max=5}" />
-
+${properties.numberfield}
+<sly data-sly-use.rangeModel="${'com.adobe.aem.studio.core.models.RangeList' @ maxNumber=properties.numberfield}" />
 <ul data-sly-list.item="${rangeModel.numbers}">
   <li>${item}</li>
 </ul>
@@ -18,7 +18,10 @@
       <ul data-sly-list.card="${cardMultifield.getChildren}">
         <sly
           data-sly-use.model="${'com.adobe.aem.studio.core.models.PagePropertiesByPath' @ pagePath = card.cardlink}" />
-        <sly data-sly-test.pageProperties="${model.pageProperties}"></sly>
+        <sly data-sly-test.pageProperties="${model.pageProperties}">
+          ${pageProperties.pageTitle}
+          ${pageProperties.jcr:description}
+        </sly>
         <p>Cards</p>
         <li data-sly-test.cardtitle="${card.cardtitle}">Title: ${cardtitle}</li>
         <li data-sly-test.cardheadingtype="${card.cardheadingtype}">Heading: ${cardheadingtype}</li>

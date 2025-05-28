@@ -13,7 +13,6 @@ import java.util.List;
 public class RangeList {
 
     @Inject
-    @RequestAttribute
     private int max;
 
     private List<Integer> numbers;
@@ -21,8 +20,15 @@ public class RangeList {
     @PostConstruct
     protected void init() {
         numbers = new ArrayList<>();
-        for (int i = 0; i < max; i++) {
-            numbers.add(i);
+
+        try {
+            int max = Integer.parseInt(maxNumber);
+
+            for (int i = 0; i < max; i++) {
+                numbers.add(i);
+            }
+        } catch (NumberFormatException e) {
+          // Return string error
         }
     }
 
