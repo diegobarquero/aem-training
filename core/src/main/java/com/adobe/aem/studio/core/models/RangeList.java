@@ -19,15 +19,8 @@ public class RangeList {
     @PostConstruct
     protected void init() {
         numbers = new ArrayList<>();
-
-        try {
-            int max = Integer.parseInt(maxNumber);
-
-            for (int i = 0; i < max; i++) {
-                numbers.add(i);
-            }
-        } catch (NumberFormatException e) {
-          // Return string error
+        for (int i = 0; i < max; i++) {
+            numbers.add(i);
         }
     }
 
