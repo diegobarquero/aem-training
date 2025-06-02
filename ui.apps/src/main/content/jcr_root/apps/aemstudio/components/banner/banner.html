@@ -1,0 +1,29 @@
+<div class="banner-container">
+    <div class="image-container">
+        <img class="img" data-sly-test="${properties.bannerImage}" src="${properties.bannerImage}" alt="${properties.title} banner" />
+    </div>
+    <div class="info-container">
+        <div class="main-info">
+            <h2 data-sly-test="${properties.title}" class="title">${properties.title}</h2>
+            <p data-sly-test="${properties.description}" class="description">${properties.description}</p>
+            <sly data-sly-test.buttonLink="${properties.buttonLink}" data-sly-test.buttonTitle="${properties.buttonTitle}">
+                <a class="link" href="${buttonLink}">${buttonTitle}</a>
+            </sly>
+        </div>
+        <div class="secondary-info">
+            <div class="link-box">
+                <p>Technical workforce</p>
+                <a>Small Steps, Giant Leaps</a>
+            </div>
+            <div class="link-box">
+                <p>Mind - blowing science</p>
+                <a>NASA's Curious Universe</a>
+            </div>
+            <div class="link-box">
+                <p>NASA en español</p>
+                <a>Universo curioso de la NASA</a>
+            </div>
+        </div>
+    </div>
+</div>
+
