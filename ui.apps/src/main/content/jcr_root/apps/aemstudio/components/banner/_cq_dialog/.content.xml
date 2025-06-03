@@ -1,59 +1,125 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:granite="http://www.adobe.com/jcr/granite/1.0"
-          xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0"
+          xmlns:granite="http://www.adobe.com/jcr/granite/1.0"
+          xmlns:jcr="http://www.jcp.org/jcr/1.0"
+          xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
           xmlns:cq="http://www.day.com/jcr/cq/1.0"
           jcr:primaryType="nt:unstructured"
           jcr:title="Banner Component"
           sling:resourceType="cq/gui/components/authoring/dialog">
+
     <content
             jcr:primaryType="nt:unstructured"
-            sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns">
+            sling:resourceType="granite/ui/components/coral/foundation/tabs">
+
         <items jcr:primaryType="nt:unstructured">
-            <column
+
+            <!-- TAB 1: Banner Info -->
+            <tab1
                     jcr:primaryType="nt:unstructured"
-                    sling:resourceType="granite/ui/components/coral/foundation/container">
+                    jcr:title="Banner Info"
+                    sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns">
+
                 <items jcr:primaryType="nt:unstructured">
-                    <title
+                    <column
                             jcr:primaryType="nt:unstructured"
-                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                            fieldLabel="Title"
-                            fieldDescription="Banner title"
-                            name="./title"
-                            required="{Boolean}false"/>
-                    <description
-                            jcr:primaryType="nt:unstructured"
-                            sling:resourceType="granite/ui/components/coral/foundation/form/textarea"
-                            fieldLabel="Description"
-                            emptyText="Banner description"
-                            fieldDescription="Add a description"
-                            name="./description"/>
-                    <bannerImage
-                            jcr:primaryType="nt:unstructured"
-                            sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
-                            fieldLabel="Banner Image"
-                            fieldDescription="Select the banner image"
-                            forceSelection="{Boolean}true"
-                            name="./bannerImage"
-                            rootPath="/content/dam/aemstudio"/>
+                            sling:resourceType="granite/ui/components/coral/foundation/container">
 
-                    <buttontitle
-                            jcr:primaryType="nt:unstructured"
-                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                            fieldLabel="Button Title"
-                            fieldDescription="Button Title"
-                            name="./buttonTitle"
-                            required="{Boolean}false"/>
-
-                    <buttonlink
-                            jcr:primaryType="nt:unstructured"
-                            sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
-                            fieldLabel="Link"
-                            fieldDescription="Select the button link"
-                            forceSelection="{Boolean}false"
-                            name="./buttonLink"
-                            rootPath="/content/aemstudio"/>
+                        <items jcr:primaryType="nt:unstructured">
+                            <title
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                    fieldLabel="Title"
+                                    fieldDescription="Banner title"
+                                    name="./title"
+                                    required="{Boolean}false"/>
+                            <description
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/form/textarea"
+                                    fieldLabel="Description"
+                                    emptyText="Banner description"
+                                    fieldDescription="Add a description"
+                                    name="./description"/>
+                            <bannerImage
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+                                    fieldLabel="Banner Image"
+                                    fieldDescription="Select the banner image"
+                                    forceSelection="{Boolean}true"
+                                    name="./bannerImage"
+                                    rootPath="/content/dam/aemstudio"/>
+                            <buttontitle
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                    fieldLabel="Button Title"
+                                    fieldDescription="Button Title"
+                                    name="./buttonTitle"
+                                    required="{Boolean}false"/>
+                            <buttonlink
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+                                    fieldLabel="Link"
+                                    fieldDescription="Select the button link"
+                                    forceSelection="{Boolean}false"
+                                    name="./buttonLink"
+                                    rootPath="/content/aemstudio"/>
+                        </items>
+                    </column>
                 </items>
-            </column>
+            </tab1>
+
+            <!-- TAB 2: Links repeater -->
+            <tab2
+                    jcr:primaryType="nt:unstructured"
+                    jcr:title="Secondary Links Info"
+                    sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns">
+
+                <items jcr:primaryType="nt:unstructured">
+                    <column
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="granite/ui/components/coral/foundation/container">
+
+                        <items jcr:primaryType="nt:unstructured">
+                            <links
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/form/multifield"
+                                    fieldDescription="Click '+' to add a new link"
+                                    composite="{Boolean}true">
+                                <field
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/container"
+                                        name="./links">
+                                    <items jcr:primaryType="nt:unstructured">
+                                        <linkCategory
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                fieldLabel="Category"
+                                                fieldDescription="Add a category name"
+                                                name="./linkCategory"
+                                                required="{Boolean}true"/>
+                                        <linkTitle
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                fieldLabel="Title"
+                                                fieldDescription="Add a title"
+                                                name="./linkTitle"
+                                                required="{Boolean}true"/>
+                                        <linkPath
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+                                                fieldLabel="Link Path"
+                                                fieldDescription="Select the link path"
+                                                forceSelection="{Boolean}true"
+                                                name="./linkPath"
+                                                rootPath="/content/aemstudio"/>
+                                    </items>
+                                </field>
+                            </links>
+                        </items>
+                    </column>
+                </items>
+            </tab2>
+
         </items>
     </content>
 </jcr:root>

@@ -11,18 +11,16 @@
             </sly>
         </div>
         <div class="secondary-info">
-            <div class="link-box">
-                <p>Technical workforce</p>
-                <a>Small Steps, Giant Leaps</a>
-            </div>
-            <div class="link-box">
-                <p>Mind - blowing science</p>
-                <a>NASA's Curious Universe</a>
-            </div>
-            <div class="link-box">
-                <p>NASA en español</p>
-                <a>Universo curioso de la NASA</a>
-            </div>
+            <sly data-sly-list.cardMultifield="${resource.getChildren}">
+                <sly data-sly-test="${cardMultifield.name == 'links'}">
+                    <sly data-sly-list.card="${cardMultifield.getChildren}">
+                        <div class="link-box">
+                            <p>${card.linkCategory}</p>
+                            <a href="${card.linkPath}">${card.linkTitle}</a>
+                        </div>
+                    </sly>
+                </sly>
+            </sly>
         </div>
     </div>
 </div>

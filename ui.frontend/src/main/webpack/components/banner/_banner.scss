@@ -3,7 +3,9 @@ $boxPadding: 3vh 1.5rem 0;
 .banner-container {
   position: relative;
   overflow: hidden;
-  height: 69vh;
+  min-height: 69vh;
+  display: flex;
+  flex-direction: column;
   .image-container {
     position: absolute;
     top: 0;
@@ -35,7 +37,7 @@ $boxPadding: 3vh 1.5rem 0;
     flex-direction: column;
     justify-content: space-between;
     gap: 2rem;
-    height: 100%;
+    flex: 1;
     .main-info {
       margin: auto 0;
       padding: $boxPadding;
@@ -65,7 +67,7 @@ $boxPadding: 3vh 1.5rem 0;
         align-self: stretch
       }
       @include md {
-        width: 50%;
+        width: 55%;
         .title {
           font-size: 40px;
         }
