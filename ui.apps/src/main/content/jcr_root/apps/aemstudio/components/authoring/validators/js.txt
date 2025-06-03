@@ -1,2 +1,3 @@
 #base=js
 multifield-limit.js
+remove-hidden-required.js
