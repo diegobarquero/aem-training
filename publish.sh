@@ -2,7 +2,7 @@
 
 # Validate arguments
 if [ "$#" -ne 1 ]; then
-  echo "Use: $0 [apps|frontend|both]"
+  echo "Use: $0 [apps|frontend|both|core]"
   exit 1
 fi
 
@@ -32,8 +32,14 @@ case "$TARGET" in
     mvn clean install -PautoInstallPackage
     cd ..
     ;;
+  core)
+      echo "Executing core..."
+      cd ./core
+      mvn clean install -PautoInstallBundle
+      cd ..
+      ;;
   *)
-    echo "Error: Invalid argument. Use 'apps', 'frontend' or 'both'."
+    echo "Error: Invalid argument. Use 'core', 'apps', 'frontend' or 'both'."
     exit 1
     ;;
 esac
