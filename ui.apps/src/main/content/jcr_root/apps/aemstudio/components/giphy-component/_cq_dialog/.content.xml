@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0"
+          xmlns:granite="http://www.adobe.com/jcr/granite/1.0"
+          xmlns:jcr="http://www.jcp.org/jcr/1.0"
+          xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+          xmlns:cq="http://www.day.com/jcr/cq/1.0"
+          jcr:primaryType="nt:unstructured"
+          jcr:title="Banner Component"
+          sling:resourceType="cq/gui/components/authoring/dialog">
+
+    <content
+            jcr:primaryType="nt:unstructured"
+            sling:resourceType="granite/ui/components/coral/foundation/tabs">
+
+        <items jcr:primaryType="nt:unstructured">
+
+            <!-- TAB 1: Giphy Parameters -->
+            <tab1
+                    jcr:primaryType="nt:unstructured"
+                    jcr:title="Giphy Parameters"
+                    sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns">
+
+                <items jcr:primaryType="nt:unstructured">
+                    <column
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="granite/ui/components/coral/foundation/container">
+
+                        <items jcr:primaryType="nt:unstructured">
+                            <apiKey
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                    fieldLabel="Giphy API Key"
+                                    fieldDescription="Giphy API Key"
+                                    name="./apiKey"
+                                    required="{Boolean}true"/>
+                            <resourceType
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                                    fieldLabel="Resource Type"
+                                    fieldDescription="Select whether to search for GIFs or Stickers."
+                                    name="./resourceType"
+                                    required="true">
+                                <items jcr:primaryType="nt:unstructured">
+                                    <gifs
+                                            jcr:primaryType="nt:unstructured"
+                                            text="GIFs"
+                                            value="gifs"/>
+                                    <stickers
+                                            jcr:primaryType="nt:unstructured"
+                                            text="Stickers"
+                                            value="stickers"/>
+                                </items>
+                            </resourceType>
+                            <queryString
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                    fieldLabel="Search"
+                                    fieldDescription="Query string"
+                                    name="./queryString"
+                                    required="{Boolean}true"/>
+                            <limit
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/form/numberfield"
+                                    fieldLabel="Limit"
+                                    fieldDescription="Limit elements"
+                                    name="./limit"
+                                    min="{Long}1"
+                                    max="{Long}50"
+                                    step="{Double}1"/>
+                            <offset
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/form/numberfield"
+                                    fieldLabel="Offset"
+                                    fieldDescription="Offset (page)"
+                                    name="./offset"
+                                    min="{Long}1"
+                                    max="{Long}50"
+                                    step="{Double}1"/>
+                            <language
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                                    fieldLabel="Language"
+                                    fieldDescription="Select the language for the Giphy search."
+                                    name="./language"
+                                    value="en">
+                                <items jcr:primaryType="nt:unstructured">
+                                    <en jcr:primaryType="nt:unstructured" text="English" value="en"/>
+                                    <es jcr:primaryType="nt:unstructured" text="Spanish" value="es"/>
+                                    <pt jcr:primaryType="nt:unstructured" text="Portuguese" value="pt"/>
+                                    <id jcr:primaryType="nt:unstructured" text="Indonesian" value="id"/>
+                                    <fr jcr:primaryType="nt:unstructured" text="French" value="fr"/>
+                                    <ar jcr:primaryType="nt:unstructured" text="Arabic" value="ar"/>
+                                    <tr jcr:primaryType="nt:unstructured" text="Turkish" value="tr"/>
+                                    <th jcr:primaryType="nt:unstructured" text="Thai" value="th"/>
+                                    <vi jcr:primaryType="nt:unstructured" text="Vietnamese" value="vi"/>
+                                    <de jcr:primaryType="nt:unstructured" text="German" value="de"/>
+                                    <it jcr:primaryType="nt:unstructured" text="Italian" value="it"/>
+                                    <ja jcr:primaryType="nt:unstructured" text="Japanese" value="ja"/>
+                                    <zh_CN jcr:primaryType="nt:unstructured" text="Chinese (Simplified)" value="zh-CN"/>
+                                    <zh_TW jcr:primaryType="nt:unstructured" text="Chinese (Traditional)" value="zh-TW"/>
+                                    <ru jcr:primaryType="nt:unstructured" text="Russian" value="ru"/>
+                                    <ko jcr:primaryType="nt:unstructured" text="Korean" value="ko"/>
+                                    <pl jcr:primaryType="nt:unstructured" text="Polish" value="pl"/>
+                                    <nl jcr:primaryType="nt:unstructured" text="Dutch" value="nl"/>
+                                    <ro jcr:primaryType="nt:unstructured" text="Romanian" value="ro"/>
+                                    <hu jcr:primaryType="nt:unstructured" text="Hungarian" value="hu"/>
+                                    <sv jcr:primaryType="nt:unstructured" text="Swedish" value="sv"/>
+                                    <cs jcr:primaryType="nt:unstructured" text="Czech" value="cs"/>
+                                    <hi jcr:primaryType="nt:unstructured" text="Hindi" value="hi"/>
+                                    <bn jcr:primaryType="nt:unstructured" text="Bengali" value="bn"/>
+                                    <da jcr:primaryType="nt:unstructured" text="Danish" value="da"/>
+                                    <fa jcr:primaryType="nt:unstructured" text="Persian" value="fa"/>
+                                    <tl jcr:primaryType="nt:unstructured" text="Tagalog" value="tl"/>
+                                    <fi jcr:primaryType="nt:unstructured" text="Finnish" value="fi"/>
+                                    <iw jcr:primaryType="nt:unstructured" text="Hebrew" value="iw"/>
+                                    <ms jcr:primaryType="nt:unstructured" text="Malay" value="ms"/>
+                                    <no jcr:primaryType="nt:unstructured" text="Norwegian" value="no"/>
+                                    <uk jcr:primaryType="nt:unstructured" text="Ukrainian" value="uk"/>
+                                </items>
+                            </language>
+                            <rating
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                                    fieldLabel="Rating"
+                                    fieldDescription="Select the content rating."
+                                    name="./rating">
+                                <items jcr:primaryType="nt:unstructured">
+                                    <g jcr:primaryType="nt:unstructured" text="G - General Audiences" value="g"/>
+                                    <pg jcr:primaryType="nt:unstructured" text="PG - Parental Guidance Suggested" value="pg"/>
+                                    <pg13 jcr:primaryType="nt:unstructured" text="PG-13 - Parents Strongly Cautioned" value="pg-13"/>
+                                    <r jcr:primaryType="nt:unstructured" text="R - Restricted" value="r"/>
+                                </items>
+                            </rating>
+                            <bundle
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                                    fieldLabel="Bundle"
+                                    fieldDescription="Select the bundle variant (optional)."
+                                    name="./bundle">
+                                <items jcr:primaryType="nt:unstructured">
+                                    <messaging_non_clips
+                                            jcr:primaryType="nt:unstructured"
+                                            text="Messaging Non-Clips"
+                                            value="messaging_non_clips"/>
+                                    <clips_grid_picker
+                                            jcr:primaryType="nt:unstructured"
+                                            text="Clips Grid Picker"
+                                            value="clips_grid_picker"/>
+                                    <sticker_layering
+                                            jcr:primaryType="nt:unstructured"
+                                            text="Sticker Layering"
+                                            value="sticker_layering"/>
+                                    <low_bandwidth
+                                            jcr:primaryType="nt:unstructured"
+                                            text="Low Bandwidth"
+                                            value="low_bandwidth"/>
+                                </items>
+                            </bundle>
+
+                        </items>
+                    </column>
+                </items>
+            </tab1>
+        </items>
+    </content>
+</jcr:root>
