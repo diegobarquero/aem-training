@@ -125,6 +125,16 @@
                             type="datetime"
                             typeHint="Date"/>
 
+                          <toDate
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="granite/ui/components/coral/foundation/form/datepicker"
+                            displayedFormat="YYYY-MM-DD"
+                            fieldLabel="Datepicker"
+                            fieldDescription="This is a Datepicker."
+                            name="./toDate"
+                            type="datetime"
+                            typeHint="Date"/>
+
                           <language
                             jcr:primaryType="nt:unstructured"
                             sling:resourceType="granite/ui/components/coral/foundation/form/select"
@@ -145,17 +155,7 @@
                                 text="French"
                                 value="fr"/>
                             </items>
-                          </language>  
-
-                          <toDate
-                            jcr:primaryType="nt:unstructured"
-                            sling:resourceType="granite/ui/components/coral/foundation/form/datepicker"
-                            displayedFormat="YYYY-MM-DD"
-                            fieldLabel="Datepicker"
-                            fieldDescription="This is a Datepicker."
-                            name="./toDate"
-                            type="datetime"
-                            typeHint="Date"/>
+                          </language>
 
                           <sortBy
                             jcr:primaryType="nt:unstructured"

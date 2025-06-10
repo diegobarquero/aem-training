@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>${currentPage.title}</title>
+  <meta charset="UTF-8" />
+  <!-- Your own CSS/JS links -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="/etc.clientlibs/your-site/clientlibs/site.css" />
+</head>
+
+<body class="aemstudio-site">
+  <header>
+    <!-- optional header components -->
+  </header>
+
+  <main>
+    <sly data-sly-resource="${'root' @ resourceType='wcm/foundation/components/parsys'}" />
+  </main>
+
+  <footer>
+    <!-- optional footer components -->
+  </footer>
+
+  <script src="/etc.clientlibs/your-site/clientlibs/site.js"></script>
+</body>
+
+</html>
