@@ -12,20 +12,41 @@ import java.util.List;
 public class RangeList {
 
     @Inject
-    private int max;
+    private String maxNumber;
 
     private List<Integer> numbers;
 
+    private List<String> numbersString;
+
     @PostConstruct
     protected void init() {
+
         numbers = new ArrayList<>();
-        for (int i = 0; i < max; i++) {
-            numbers.add(i);
+
+        numbersString = new ArrayList<>();
+
+        try {
+            
+            int max = Integer.parseInt(maxNumber);
+
+            for (int i = 0; i < max; i++) {
+
+                numbers.add(i);
+
+                numbersString.add(String.valueOf(i));
+
+            }
+        } catch (NumberFormatException e) {
+          // Return string error
         }
     }
 
     public List<Integer> getNumbers() {
         return numbers;
+    }
+
+    public List<String> getNumbersString() {
+        return numbersString;
     }
 }
 
