@@ -1,0 +1,15 @@
+<div>${properties.amountOfItems}</div>
+
+<div class="rapm-container-parsys-grid">
+    <div class="rapm-container-parsys-item">
+        <sly
+            data-sly-use.rangeModel="${'com.adobe.aem.studio.core.models.RangeList' @ maxNumber=properties.amountOfItems}" />
+
+        <sly data-sly-list.item="${rangeModel.numbersString}">
+            <div class="dynamic-parsys-container">
+                <div class="parsys-renderer" data-sly-resource="${@path = item, resourceType='foundation/components/parsys'}">
+                </div>
+            </div>
+        </sly>
+    </div>
+</div>
