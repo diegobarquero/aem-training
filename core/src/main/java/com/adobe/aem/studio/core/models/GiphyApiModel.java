@@ -32,10 +32,10 @@ public class GiphyApiModel {
     private String queryString;
 
     @ValueMapValue
-    private Number limit;
+    private Integer limit;
 
     @ValueMapValue
-    private Number offset;
+    private Integer offset;
 
     @ValueMapValue
     private String language;
@@ -50,6 +50,7 @@ public class GiphyApiModel {
     private String apiKey;
 
     private final List<Map<String, Object>> giphyData = new ArrayList<>();
+    private final List<String> params = new ArrayList<>();
 
     @PostConstruct
     protected void init() {
@@ -57,9 +58,6 @@ public class GiphyApiModel {
             String baseUrl = "https://api.giphy.com/v1";
 
             String route = "/" + resourceType + "/search";
-
-
-            List<String> params = new ArrayList<>();
 
             params.add("api_key=" + URLEncoder.encode(apiKey, "UTF-8"));
             params.add("q=" + URLEncoder.encode(queryString, "UTF-8"));
@@ -107,5 +105,9 @@ public class GiphyApiModel {
 
     public List<Map<String, Object>> getGiphyData() {
         return giphyData;
+    }
+
+    public List<String> getParams() {
+        return params;
     }
 }

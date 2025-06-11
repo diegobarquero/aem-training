@@ -4,6 +4,11 @@
   flex-wrap: wrap;
   justify-content: start;
   gap: 2%;
+  .search-type {
+    flex-grow: 1;
+    width: 100%;
+    margin-bottom: 40px;
+  }
   .card {
     background-color: #FFFFFF;
     display: flex;

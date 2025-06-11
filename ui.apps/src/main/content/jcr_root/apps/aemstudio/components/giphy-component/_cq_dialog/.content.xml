@@ -73,7 +73,7 @@
                                     fieldLabel="Offset"
                                     fieldDescription="Offset (page)"
                                     name="./offset"
-                                    min="{Long}1"
+                                    min="{Long}0"
                                     max="{Long}50"
                                     step="{Double}1"/>
                             <language

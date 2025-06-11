@@ -1,6 +1,6 @@
 <div class="giphy-component-container">
     <sly data-sly-use.model="com.adobe.aem.studio.core.models.GiphyApiModel" />
-
+    <h2 class="search-type">Search: ${properties.queryString} - ${properties.resourceType}</h2>
     <sly data-sly-test="${model.giphyData}" data-sly-list.item="${model.giphyData}">
         <div data-sly-test="${item['images'] && item['images']['original'] && item['images']['original']['url']}" class="card">
             <div class="card-image">
