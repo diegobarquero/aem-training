@@ -1,0 +1,27 @@
+<div class="banner-container">
+    <div class="image-container">
+        <img class="img" data-sly-test="${properties.bannerImage}" src="${properties.bannerImage}" alt="${properties.title} banner" />
+    </div>
+    <div class="info-container">
+        <div class="main-info">
+            <h2 data-sly-test="${properties.title}" class="title">${properties.title}</h2>
+            <p data-sly-test="${properties.description}" class="description">${properties.description}</p>
+            <sly data-sly-test.buttonLink="${properties.buttonLink}" data-sly-test.buttonTitle="${properties.buttonTitle}">
+                <a class="link" href="${buttonLink}">${buttonTitle}</a>
+            </sly>
+        </div>
+        <div class="secondary-info">
+            <sly data-sly-list.cardMultifield="${resource.getChildren}">
+                <sly data-sly-test="${cardMultifield.name == 'links'}">
+                    <sly data-sly-list.card="${cardMultifield.getChildren}">
+                        <div class="link-box">
+                            <p>${card.linkCategory}</p>
+                            <a href="${card.linkPath}">${card.linkTitle}</a>
+                        </div>
+                    </sly>
+                </sly>
+            </sly>
+        </div>
+    </div>
+</div>
+

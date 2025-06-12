@@ -1,8 +1,21 @@
-<div class="dbj-component">
+<sly data-sly-test="${properties.populationMode == 'customAuthor'}">
   <div class="dbj-card" data-sly-test="${properties.cardthumb}">
-    <div class="card-img"><img src="${properties.cardthumb}" alt /></div>
+    <div class="card-img"><img src="${properties.cardthumb}" alt="alt text" /></div>
     <h3>${properties.cardtitle}</h3>
     <p>${properties.carddescription}</p>
     <a class="card-link" href="${properties.cardlink}">${properties.btnlabel}</a>
   </div><!-- end.dbj-card -->
-</div><!-- end.dbj-component -->
+</sly>
+
+<sly data-sly-test="${properties.populationMode == 'dynamic'}">
+  <sly data-sly-use.model="com.adobe.aem.studio.core.models.NewsApiModel" />
+
+  <sly data-sly-test="${model.newsData}" data-sly-list.article="${model.newsData}">
+    <div class="dbj-card" data-sly-test="${article.urlToImage}">
+      <div class="card-img"><img src="${article.urlToImage}" alt="alt text" /></div>
+      <h3>${article.title}</h3>
+      <p>${article.description}</p>
+      <a class="card-link" href="${article.url}" target="_blank">Article</a>
+    </div><!-- end.dbj-card -->
+  </sly>
+</sly>

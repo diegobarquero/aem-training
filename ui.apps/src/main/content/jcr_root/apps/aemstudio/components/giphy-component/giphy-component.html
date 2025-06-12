@@ -1,0 +1,16 @@
+<div class="giphy-component-container">
+    <sly data-sly-use.model="com.adobe.aem.studio.core.models.GiphyApiModel" />
+
+    <sly data-sly-test="${model.giphyData}" data-sly-list.item="${model.giphyData}">
+        <div data-sly-test="${item['images'] && item['images']['original'] && item['images']['original']['url']}" class="card">
+            <div class="card-image">
+                <img class="img" data-sly-test="${item['images']['original']['url']}" src="${item['images']['original']['url']}" alt="${item.title}" />
+            </div>
+            <div class="card-content">
+                <p class="title">${item.title}</p>
+                <a class="link" target="_blank" rel="noreferrer" href="${item.url}">Open in new tab</a>
+            </div>
+        </div>
+    </sly>
+</div>
+
