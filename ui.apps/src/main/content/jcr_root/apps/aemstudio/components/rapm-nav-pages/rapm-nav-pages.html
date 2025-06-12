@@ -1,0 +1,39 @@
+<sly data-sly-use.templates="core/wcm/components/commons/v1/templates.html" />
+<sly data-sly-call="${templates.placeholder @ isEmpty = !resource.getChildren}" />
+
+
+<!-- Getting a multifield counter -->
+<sly data-sly-list.pagesMultifield="${resource.getChildren}">
+    <sly data-sly-test="${pagesMultifield.name == 'navpages'}" data-sly-list.pageitem="${pagesMultifield.getChildren}">
+        <sly data-sly-set.itemCount="${pageitemList.count}" />
+    </sly>
+</sly>
+
+<div class="rapm-nav-pages-container">
+    <h3 class="nav-pages-eyebrow" data-sly-test="${properties.pageeyebrow}">${properties.pageeyebrow}</h3>
+    <div class="${properties.pagestyle}" data-item="${itemCount}">
+        <!-- Loop for the articles -->
+        <sly data-sly-list.pagesMultifield="${resource.getChildren}">
+            <sly data-sly-test="${pagesMultifield.name == 'navpages'}">
+                <sly data-sly-list.pageitem="${pagesMultifield.getChildren}">
+                    <div class="page-card">
+                        <a href="${pageitem.pageurl}" target="${pageitem.switchValue}">
+                            <div class="image-container">
+                                <img class="pagethumbnail" data-sly-test="${pageitem.pagethumbnail}"
+                                    src="${pageitem.pagethumbnail}" alt="alt text" />
+
+                            </div>
+
+                            <div class="content-container">
+                                <p class="min-read">${pageitem.minutes} min read</p>
+                                <p>${pageitem.pagetitle}</p>
+                                <p>${pageitem.pagecategory}</p>
+
+                            </div>
+                        </a>
+                    </div>
+                </sly>
+            </sly>
+        </sly>
+    </div>
+</div>

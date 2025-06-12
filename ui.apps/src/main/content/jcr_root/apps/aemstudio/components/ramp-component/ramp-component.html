@@ -1,0 +1,17 @@
+<div class="ramp-card">
+    <div class="ramp-card-img">
+        <img src="${properties.cardthumbnail}" alt="">
+    </div>
+    <h3>${properties.cardtitle}</h3>
+    <p>${properties.carddescription}</p>
+    <!-- <a data-sly-test.btncard="${properties.btncard}" href="${properties.btnlink}" target="${properties.switchValue}" >${properties.btncard}</a> -->
+    <sly data-sly-list.linkMultifield="${resource.getChildren}">
+        <sly data-sly-test="${linkMultifield.name == 'links'}">
+            <div data-sly-list.link="${linkMultifield.getChildren}" class="ramp-card-multilinks">
+                <a data-sly-test.linkbutton="${link.btncard}" href="${link.btnlink}" target="${link.switchValue}">
+                    ${link.btncard}</li>
+                </a>
+            </div>
+        </sly>
+    </sly>
+</div>
