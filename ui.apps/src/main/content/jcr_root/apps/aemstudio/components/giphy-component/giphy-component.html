@@ -14,11 +14,9 @@
             </div>
         </sly>
     </div>
-    <h4>Total pages: ${model.pages.size}</h4>
-    <p>${model.currentPage}</p>
     <div class="giphy-pagination">
         <sly data-sly-list.paginationPage="${model.pages}">
-            <a href="${paginationPage.value}" class="page-link">${paginationPage.key}</a>
+            <a href="${paginationPage.value}" class="page-link${model.currentPage == paginationPage.key ? ' active' : ''}">${paginationPage.key}</a>
         </sly>
     </div>
 </div>

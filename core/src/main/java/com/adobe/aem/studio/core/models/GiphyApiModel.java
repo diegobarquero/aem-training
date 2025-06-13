@@ -38,8 +38,7 @@ public class GiphyApiModel {
     @ValueMapValue
     private Integer limit;
 
-    @ValueMapValue
-    private Integer offset;
+    private Integer offset = 0;
 
     @ValueMapValue
     private String language;
@@ -153,8 +152,8 @@ public class GiphyApiModel {
         return pages;
     }
 
-    public int getCurrentPage() {
-        return currentPage;
+    public String getCurrentPage() {
+        return String.valueOf(currentPage);
     }
 
     private String buildUrlWithParams(Map<String, String> overrides) {
