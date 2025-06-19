@@ -73,26 +73,23 @@ public class GiphyApiModel {
             params.add("q=" + URLEncoder.encode(queryString, "UTF-8"));
 
             hashedId = generateHash(queryString);
-            String offsetParamName = "offset" + hashedId;
-            String offsetParamValue = request.getParameter(offsetParamName);
+            String pageParamName = "page-" + hashedId;
+            String pageParamValue = request.getParameter(pageParamName);
 
-            if (offsetParamValue != null) {
+            if (pageParamValue != null) {
                 try {
-                    offset = Integer.parseInt(offsetParamValue);
+                    currentPage = Integer.parseInt(pageParamValue);
                 } catch (NumberFormatException e) {
                 // Keep the old value from dialog
+                currentPage = 1;
                 }
             }
 
-            if (limit != null) {
-                params.add("limit=" + limit);
-            }
-            if (offset != null) {
-                if (limit != null && limit > 0) {
-                    currentPage = (offset / limit) + 1;
-                }
-                params.add("offset=" + offset);
-            }
+            offset = (currentPage - 1) * limit;
+            params.add("offset=" + offset);
+
+            params.add("limit=" + limit);
+
             if (language != null && !language.isEmpty()) {
                 params.add("lang=" + URLEncoder.encode(language, "UTF-8"));
             }
@@ -125,8 +122,8 @@ public class GiphyApiModel {
             }
             for (int page = 0; page < totalPages; page++) {
                 Map<String, String> overrideParams = new LinkedHashMap<>();
-                overrideParams.put(offsetParamName, String.valueOf(page * limit));
-                String fullUrl = buildUrlWithParams(overrideParams);
+                overrideParams.put(pageParamName, String.valueOf(page + 1));
+                String fullUrl = buildUrlWithParams(overrideParams) + "#" + hashedId;
                 Map<String, Object> pageEntry = new LinkedHashMap<>();
                 pageEntry.put("key", String.valueOf(page + 1));
                 pageEntry.put("value", fullUrl);
@@ -154,6 +151,10 @@ public class GiphyApiModel {
 
     public String getCurrentPage() {
         return String.valueOf(currentPage);
+    }
+
+    public String getHashedId() {
+        return hashedId;
     }
 
     private String buildUrlWithParams(Map<String, String> overrides) {
