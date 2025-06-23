@@ -1,3 +1,4 @@
 #base=js
 multifield-limit.js
 remove-hidden-required.js
+remove-hidden-multifield-limit.js
