@@ -2,38 +2,85 @@
 <sly data-sly-call="${templates.placeholder @ isEmpty = !resource.getChildren}" />
 
 
-<!-- Getting a multifield counter -->
-<sly data-sly-list.pagesMultifield="${resource.getChildren}">
-    <sly data-sly-test="${pagesMultifield.name == 'navpages'}" data-sly-list.pageitem="${pagesMultifield.getChildren}">
-        <sly data-sly-set.itemCount="${pageitemList.count}" />
+<sly data-sly-test="${properties.populationMode == 'customAuthor'}">
+    <!-- Getting a multifield counter -->
+    <sly data-sly-list.pagesMultifield="${resource.getChildren}">
+        <sly data-sly-test="${pagesMultifield.name == 'navpages'}"
+            data-sly-list.pageitem="${pagesMultifield.getChildren}">
+            <sly data-sly-set.itemCount="${pageitemList.count}" />
+        </sly>
     </sly>
-</sly>
 
-<div class="rapm-nav-pages-container">
-    <h3 class="nav-pages-eyebrow" data-sly-test="${properties.pageeyebrow}">${properties.pageeyebrow}</h3>
-    <div class="${properties.pagestyle}" data-item="${itemCount}">
-        <!-- Loop for the articles -->
-        <sly data-sly-list.pagesMultifield="${resource.getChildren}">
-            <sly data-sly-test="${pagesMultifield.name == 'navpages'}">
-                <sly data-sly-list.pageitem="${pagesMultifield.getChildren}">
-                    <div class="page-card">
-                        <a href="${pageitem.pageurl}" target="${pageitem.switchValue}">
-                            <div class="image-container">
-                                <img class="pagethumbnail" data-sly-test="${pageitem.pagethumbnail}"
-                                    src="${pageitem.pagethumbnail}" alt="alt text" />
+    <div class="rapm-nav-pages-container">
+        <h3 class="nav-pages-eyebrow" data-sly-test="${properties.pageeyebrow}">${properties.pageeyebrow}</h3>
+        <div class="${properties.pagestyle}" data-item="${itemCount}">
+            <!-- Loop for the articles -->
+            <sly data-sly-list.pagesMultifield="${resource.getChildren}">
+                <sly data-sly-test="${pagesMultifield.name == 'navpages'}">
+                    <sly data-sly-list.pageitem="${pagesMultifield.getChildren}">
+                        <div class="page-card">
+                            <a href="${pageitem.pageurl}" target="${pageitem.switchValue}">
+                                <div class="image-container">
+                                    <img class="pagethumbnail" data-sly-test="${pageitem.pagethumbnail}"
+                                        src="${pageitem.pagethumbnail}" alt="alt text" />
 
-                            </div>
+                                </div>
 
-                            <div class="content-container">
-                                <p class="min-read">${pageitem.minutes} min read</p>
-                                <p>${pageitem.pagetitle}</p>
-                                <p>${pageitem.pagecategory}</p>
+                                <div class="content-container">
+                                    <p class="min-read">${pageitem.minutes} min read</p>
+                                    <h3>${pageitem.pagetitle}</h3>
+                                    <p class="page-category">${pageitem.pagecategory}</p>
 
-                            </div>
-                        </a>
-                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </sly>
                 </sly>
             </sly>
-        </sly>
+        </div>
     </div>
-</div>
+
+</sly>
+
+<sly data-sly-test="${properties.populationMode == 'dynamic'}">
+    <!-- Getting a multifield counter -->
+    <sly data-sly-list.pagesMultifield="${resource.getChildren}">
+        <sly data-sly-test="${pagesMultifield.name == 'navDynamicPages'}"
+            data-sly-list.pageitem="${pagesMultifield.getChildren}">
+            <sly data-sly-set.itemCount="${pageitemList.count}" />
+        </sly>
+    </sly>
+
+
+    <div class="rapm-nav-pages-container">
+        <h3 class="nav-pages-eyebrow" data-sly-test="${properties.pageeyebrow}">${properties.pageeyebrow}</h3>
+        <div class="${properties.pagestyle}" data-item="${itemCount}">
+            <sly data-sly-list.pageMultifield="${resource.getChildren}">
+                <sly data-sly-test="${pageMultifield.name == 'navDynamicPages'}">
+                    <sly data-sly-list.page="${pageMultifield.getChildren}">
+                        <div class="page-card">
+                            <sly
+                                data-sly-use.model="${'com.adobe.aem.studio.core.models.PagePropertiesByPath' @ pagePath = page.dynamicurl}" />
+                            <sly data-sly-test.pageProperties="${model.pageProperties}" />
+                            <a href="${page.dynamicurl}" target="${page.switchValue}">
+                                <div class="image-container">
+                                    <sly data-sly-test.pageThumbnail="${model.thumbnailUrl}" />
+                                    <img class="pagethumbnail" data-sly-test="${pagethumbnail}" src="${pageThumbnail}"
+                                        alt="alt text" />
+                                </div>
+
+                                <div class="content-container">
+                                    <p class="min-read">${page.minutes} min read</p>
+                                    <h3>${pageProperties['jcr:title']}</h3>
+                                    <sly data-sly-set.tags="${pageProperties['cq:tags']}" />
+                                    <p class="page-category page-category-dynamic" data-sly-text="${tags}" ></p>
+
+                                </div>
+                            </a>
+                        </div>
+                    </sly>
+                </sly>
+            </sly>
+        </div>
+    </div>
+</sly>

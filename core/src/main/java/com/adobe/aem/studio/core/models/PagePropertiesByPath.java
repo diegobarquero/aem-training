@@ -4,6 +4,7 @@ import com.day.cq.wcm.api.Page;
 import com.day.cq.wcm.api.PageManager;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
+import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.api.resource.ValueMap;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
@@ -13,6 +14,11 @@ import javax.inject.Inject;
 
 @Model(adaptables = SlingHttpServletRequest.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class PagePropertiesByPath {
+
+    @Inject
+    private ResourceResolver resourceResolver;
+
+    private String thumbnailUrl;
 
     @Inject
     private Resource resource;
@@ -34,10 +40,20 @@ public class PagePropertiesByPath {
 
         if (originPage != null) {
             pageProperties = originPage.getProperties();
+
+            Resource imageRes = resourceResolver.getResource(pagePath + "/jcr:content/image");
+            if (imageRes != null) {
+                thumbnailUrl = imageRes.getValueMap().get("fileReference", String.class);
+            }
         }
+
     }
 
     public ValueMap getPageProperties() {
         return pageProperties;
+    }
+
+    public String getThumbnailUrl() {
+        return thumbnailUrl;
     }
 }
