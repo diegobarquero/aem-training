@@ -1,0 +1,7 @@
+<div>
+  <sly data-sly-use.model="com.adobe.aem.studio.core.models.ChatGPTApiModel">
+    <div>ChatGPT Response: ${model.responseText}</div>
+    <div>ChatGPT Response Image: ${model.responseImage}</div>
+    <img src="${model.responseImage}">
+  </sly>
+</div>

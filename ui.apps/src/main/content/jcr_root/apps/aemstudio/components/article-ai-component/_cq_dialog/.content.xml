@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root
+  xmlns:sling="http://sling.apache.org/jcr/sling/1.0"
+  xmlns:granite="http://www.adobe.com/jcr/granite/1.0"
+  xmlns:jcr="http://www.jcp.org/jcr/1.0"
+  xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+  xmlns:cq="http://www.day.com/jcr/cq/1.0"
+  jcr:primaryType="nt:unstructured"
+  jcr:title="Article AI Component"
+  sling:resourceType="cq/gui/components/authoring/dialog">
+
+  <content
+    jcr:primaryType="nt:unstructured"
+    sling:resourceType="granite/ui/components/coral/foundation/container"
+    granite:class="cmp-container__editor">
+
+    <items jcr:primaryType="nt:unstructured">
+      <tabs
+        jcr:primaryType="nt:unstructured"
+        sling:resourceType="granite/ui/components/coral/foundation/tabs">
+        <items jcr:primaryType="nt:unstructured">
+          <!-- TAB 1: OpenAI Configuration -->
+          <tab1
+            jcr:primaryType="nt:unstructured"
+            jcr:title="OpenAI Configuration"
+            sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns">
+
+            <items jcr:primaryType="nt:unstructured">
+              <column
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="granite/ui/components/coral/foundation/container">
+
+                <items jcr:primaryType="nt:unstructured">
+                  <apiKey
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                    fieldLabel="OpenAI API Key"
+                    fieldDescription="OpenAI API Key"
+                    name="./apiKey"
+                    required="{Boolean}True" />
+
+                  <prompt
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                    fieldLabel="Enter prompt"
+                    fieldDescription="Prompt"
+                    name="./prompt"
+                    required="{Boolean}True" />
+                </items>
+              </column>
+            </items>
+          </tab1>
+
+          <!-- TAB 2: Content configuration -->
+          <tab2
+            jcr:primaryType="nt:unstructured"
+            jcr:title="Content configuration"
+            sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns">
+
+            <items jcr:primaryType="nt:unstructured">
+              <column
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="granite/ui/components/coral/foundation/container">
+
+                <items jcr:primaryType="nt:unstructured">
+                  <title
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                    fieldLabel="Article title"
+                    fieldDescription="Article title."
+                    name="./title"
+                    required="{Boolean}True" />
+
+                  <lockGeneration
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
+                    fieldDescription="If this field is checked, the AI will generate a new banner."
+                    name="./lockGeneration"
+                    text="Lock generation"
+                    checked="{Boolean}true"
+                    uncheckedValue="{Boolean}false"
+                    value="{Boolean}false" />
+
+                  <bannerPrompt
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                    fieldLabel="Enter prompt for generate a banner"
+                    fieldDescription="Prompt for banner generation"
+                    name="./bannerPrompt"
+                    required="{Boolean}False" />
+
+                  <contentMultifield
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="granite/ui/components/coral/foundation/form/multifield"
+                    fieldLabel="Content Multifield"
+                    fieldDescription="Enter prompts for AI content generation."
+                    composite="{Boolean}true">
+                    <field
+                      jcr:primaryType="nt:unstructured"
+                      sling:resourceType="granite/ui/components/coral/foundation/container"
+                      name="./values">
+                      <items jcr:primaryType="nt:unstructured">
+                        <promptValue
+                          jcr:primaryType="nt:unstructured"
+                          sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                          fieldLabel="Enter a prompt for generate a paragraph"
+                          fieldDescription="Prompt for generate a paragraph"
+                          name="./promptValue" />
+                      </items>
+                    </field>
+                  </contentMultifield>
+                </items>
+              </column>
+            </items>
+          </tab2>
+        </items>
+      </tabs>
+    </items>
+
+  </content>
+</jcr:root>
