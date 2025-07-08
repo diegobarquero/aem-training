@@ -1,0 +1,17 @@
+<p>Multitest from dialog</p>
+
+<div data-sly-list.multifield="${resource.getChildren}">
+  <div data-sly-test="${multifield.name == 'multitest'}">
+    <ul data-sly-list.item="${multifield.getChildren}">
+      <li data-sly-test.textvalue="${item.textvalue}">${textvalue}</li>
+    </ul>
+  </div>
+</div>
+
+<p>Multitest from model</p>
+
+<sly data-sly-use.model="com.adobe.aem.studio.core.models.MultitestModel" />
+
+<ul data-sly-list.item="${model.textValues}">
+  <li>${item}</li>
+</ul>
