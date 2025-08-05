@@ -74,12 +74,11 @@
                   <lockGeneration
                     jcr:primaryType="nt:unstructured"
                     sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
-                    fieldDescription="If this field is checked, the AI will generate a new banner."
+                    fieldDescription="If this field is unchecked, the AI will generate a new banner."
                     name="./lockGeneration"
                     text="Lock generation"
-                    checked="{Boolean}true"
                     uncheckedValue="{Boolean}false"
-                    value="{Boolean}false" />
+                    value="{Boolean}true" />
 
                   <bannerPrompt
                     jcr:primaryType="nt:unstructured"
@@ -98,8 +97,14 @@
                     <field
                       jcr:primaryType="nt:unstructured"
                       sling:resourceType="granite/ui/components/coral/foundation/container"
-                      name="./values">
+                      name="./contentMultifield">
                       <items jcr:primaryType="nt:unstructured">
+                        <subtitle
+                          jcr:primaryType="nt:unstructured"
+                          sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                          fieldLabel="Subtitle"
+                          fieldDescription="Subtitle for the generated paragraph"
+                          name="./subtitle" />
                         <promptValue
                           jcr:primaryType="nt:unstructured"
                           sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
