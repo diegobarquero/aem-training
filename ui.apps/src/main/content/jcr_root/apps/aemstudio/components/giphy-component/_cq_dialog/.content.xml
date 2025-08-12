@@ -5,7 +5,7 @@
           xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
           xmlns:cq="http://www.day.com/jcr/cq/1.0"
           jcr:primaryType="nt:unstructured"
-          jcr:title="Banner Component"
+          jcr:title="GIF and Sticker Browser"
           sling:resourceType="cq/gui/components/authoring/dialog">
 
     <content
