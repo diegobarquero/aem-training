@@ -18,6 +18,10 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.util.LinkedHashMap;
+import java.nio.charset.StandardCharsets;
 
 @Model(adaptables = SlingHttpServletRequest.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class GiphyApiModel {
@@ -32,10 +36,9 @@ public class GiphyApiModel {
     private String queryString;
 
     @ValueMapValue
-    private Number limit;
+    private Integer limit;
 
-    @ValueMapValue
-    private Number offset;
+    private Integer offset = 0;
 
     @ValueMapValue
     private String language;
@@ -51,6 +54,14 @@ public class GiphyApiModel {
 
     private final List<Map<String, Object>> giphyData = new ArrayList<>();
 
+    private final List<String> params = new ArrayList<>();
+
+    private final List<Map<String, Object>> pages = new ArrayList<>();
+
+    private String hashedId;
+
+    private int currentPage = 1;
+
     @PostConstruct
     protected void init() {
         try {
@@ -58,18 +69,27 @@ public class GiphyApiModel {
 
             String route = "/" + resourceType + "/search";
 
-
-            List<String> params = new ArrayList<>();
-
             params.add("api_key=" + URLEncoder.encode(apiKey, "UTF-8"));
             params.add("q=" + URLEncoder.encode(queryString, "UTF-8"));
 
-            if (limit != null) {
-                params.add("limit=" + limit);
+            hashedId = generateHash(queryString);
+            String pageParamName = "page-" + hashedId;
+            String pageParamValue = request.getParameter(pageParamName);
+
+            if (pageParamValue != null) {
+                try {
+                    currentPage = Integer.parseInt(pageParamValue);
+                } catch (NumberFormatException e) {
+                // Keep the old value from dialog
+                currentPage = 1;
+                }
             }
-            if (offset != null) {
-                params.add("offset=" + offset);
-            }
+
+            offset = (currentPage - 1) * limit;
+            params.add("offset=" + offset);
+
+            params.add("limit=" + limit);
+
             if (language != null && !language.isEmpty()) {
                 params.add("lang=" + URLEncoder.encode(language, "UTF-8"));
             }
@@ -92,12 +112,24 @@ public class GiphyApiModel {
             JsonNode root = mapper.readTree(input);
 
             JsonNode dataArray = root.get("data");
+            int totalCount = root.get("pagination").path("total_count").asInt();
+            int totalPages = (limit != null && limit > 0) ? (int) Math.ceil((double) totalCount / limit) : 1;
             if (dataArray != null && dataArray.isArray()) {
                 for (JsonNode item : dataArray) {
                     Map<String, Object> gifInfo = mapper.convertValue(item, Map.class);
                     giphyData.add(gifInfo);
                 }
             }
+            for (int page = 0; page < totalPages; page++) {
+                Map<String, String> overrideParams = new LinkedHashMap<>();
+                overrideParams.put(pageParamName, String.valueOf(page + 1));
+                String fullUrl = buildUrlWithParams(overrideParams) + "#" + hashedId;
+                Map<String, Object> pageEntry = new LinkedHashMap<>();
+                pageEntry.put("key", String.valueOf(page + 1));
+                pageEntry.put("value", fullUrl);
+                pages.add(pageEntry);
+            }
+
             connection.disconnect();
         }
         catch (Exception e) {
@@ -107,5 +139,56 @@ public class GiphyApiModel {
 
     public List<Map<String, Object>> getGiphyData() {
         return giphyData;
+    }
+
+    public List<String> getParams() {
+        return params;
+    }
+
+    public List<Map<String, Object>> getPages() {
+        return pages;
+    }
+
+    public String getCurrentPage() {
+        return String.valueOf(currentPage);
+    }
+
+    public String getHashedId() {
+        return hashedId;
+    }
+
+    private String buildUrlWithParams(Map<String, String> overrides) {
+        String base = request.getRequestURI();
+        Map<String, String[]> currentParams = request.getParameterMap();
+        List<String> finalParams = new ArrayList<>();
+
+        // Copy current params except the one that are going to be updated
+        for (Map.Entry<String, String[]> entry : currentParams.entrySet()) {
+            String key = entry.getKey();
+            if (!overrides.containsKey(key) && entry.getValue().length > 0) {
+                finalParams.add(key + "=" + URLEncoder.encode(entry.getValue()[0], StandardCharsets.UTF_8));
+            }
+        }
+
+        // Add or replace with overrides
+        for (Map.Entry<String, String> entry : overrides.entrySet()) {
+            finalParams.add(entry.getKey() + "=" + URLEncoder.encode(entry.getValue(), StandardCharsets.UTF_8));
+        }
+
+        return base + "?" + String.join("&", finalParams);
+    }
+
+    private String generateHash(String input) {
+        try {
+            MessageDigest md = MessageDigest.getInstance("MD5");
+            byte[] digest = md.digest(input.getBytes());
+            StringBuilder sb = new StringBuilder();
+            for (byte b : digest) {
+                sb.append(String.format("%02x", b & 0xff));
+            }
+            return sb.toString();
+        } catch (NoSuchAlgorithmException e) {
+            return Integer.toHexString(input.hashCode()); // Fallback
+        }
     }
 }

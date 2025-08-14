@@ -1,16 +1,23 @@
-<div class="giphy-component-container">
-    <sly data-sly-use.model="com.adobe.aem.studio.core.models.GiphyApiModel" />
-
-    <sly data-sly-test="${model.giphyData}" data-sly-list.item="${model.giphyData}">
-        <div data-sly-test="${item['images'] && item['images']['original'] && item['images']['original']['url']}" class="card">
-            <div class="card-image">
-                <img class="img" data-sly-test="${item['images']['original']['url']}" src="${item['images']['original']['url']}" alt="${item.title}" />
+<sly data-sly-use.model="com.adobe.aem.studio.core.models.GiphyApiModel" />
+<div id="${model.hashedId}" class="giphy-component-container">
+    <h2 class="search-type">Search: ${properties.queryString} - ${properties.resourceType}</h2>
+    <div class="giphy-data">
+        <sly data-sly-test="${model.giphyData}" data-sly-list.item="${model.giphyData}">
+            <div data-sly-test="${item['images'] && item['images']['original'] && item['images']['original']['url']}" class="card">
+                <div class="card-image">
+                    <img class="img" data-sly-test="${item['images']['original']['url']}" src="${item['images']['original']['url']}" alt="${item.title}" />
+                </div>
+                <div class="card-content">
+                    <p class="title">${item.title}</p>
+                    <a class="link" target="_blank" rel="noreferrer" href="${item.url}">Open in new tab</a>
+                </div>
             </div>
-            <div class="card-content">
-                <p class="title">${item.title}</p>
-                <a class="link" target="_blank" rel="noreferrer" href="${item.url}">Open in new tab</a>
-            </div>
-        </div>
-    </sly>
+        </sly>
+    </div>
+    <div class="giphy-pagination">
+        <sly data-sly-list.paginationPage="${model.pages}">
+            <a href="${paginationPage.value}" class="page-link${model.currentPage == paginationPage.key ? ' active' : ''}">${paginationPage.key}</a>
+        </sly>
+    </div>
 </div>
 

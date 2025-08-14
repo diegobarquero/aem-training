@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root
+  xmlns:sling="http://sling.apache.org/jcr/sling/1.0"
+  xmlns:granite="http://www.adobe.com/jcr/granite/1.0"
+  xmlns:jcr="http://www.jcp.org/jcr/1.0"
+  xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+  xmlns:cq="http://www.day.com/jcr/cq/1.0"
+  jcr:primaryType="nt:unstructured"
+  jcr:title="Jqp Component"
+  sling:resourceType="cq/gui/components/authoring/dialog">
+
+  <content
+    jcr:primaryType="nt:unstructured"
+    sling:resourceType="granite/ui/components/coral/foundation/container"
+    granite:class="cmp-container__editor">
+
+    <items jcr:primaryType="nt:unstructured">
+      <column
+        jcr:primaryType="nt:unstructured"
+        sling:resourceType="granite/ui/components/coral/foundation/container">
+
+        <items jcr:primaryType="nt:unstructured">
+          <cardImage
+            jcr:primaryType="nt:unstructured"
+            sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+            fieldLabel="Card Image"
+            fieldDescription="Please select an image for the card"
+            forceSelection="{Boolean}true"
+            name="./cardImage"
+            rootPath="/content/dam/aemstudio" />
+
+          <cardTitle
+            jcr:primaryType="nt:unstructured"
+            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+            fieldLabel="Card title"
+            fieldDescription="Card Title"
+            name="./cardTitle"
+            required="{Boolean}True" />
+
+          <cardDesc
+            jcr:primaryType="nt:unstructured"
+            sling:resourceType="granite/ui/components/coral/foundation/form/textarea"
+            fieldLabel="Description"
+            fieldDescription="Short description"
+            name="./cardDesc" />
+
+          <cardButtonText
+            jcr:primaryType="nt:unstructured"
+            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+            fieldLabel="Button label"
+            fieldDescription="Button label"
+            name="./cardButtonText"
+            required="{Boolean}True" />
+
+          <cardButtonLink
+            jcr:primaryType="nt:unstructured"
+            sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+            fieldLabel="Button link"
+            fieldDescription="Select the button link"
+            forceSelection="{Boolean}true"
+            name="./cardButtonLink"
+            rootPath="/content/aemstudio" />
+        </items>
+      </column>
+    </items>
+  </content>
+</jcr:root>
