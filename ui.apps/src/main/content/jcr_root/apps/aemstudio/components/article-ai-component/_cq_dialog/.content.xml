@@ -38,15 +38,8 @@
                     fieldDescription="OpenAI API Key"
                     name="./apiKey"
                     required="{Boolean}True" />
-
-                  <prompt
-                    jcr:primaryType="nt:unstructured"
-                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                    fieldLabel="Enter prompt"
-                    fieldDescription="Prompt"
-                    name="./prompt"
-                    required="{Boolean}True" />
                 </items>
+
               </column>
             </items>
           </tab1>
@@ -88,6 +81,56 @@
                     name="./bannerPrompt"
                     required="{Boolean}False" />
 
+                  <bannerSize
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                    fieldLabel="Select banner size"
+                    fieldDescription="Select the size of the banner image. Recommended size is landscape (1792x1024)."
+                    name="./bannerSize">
+                    <items jcr:primaryType="nt:unstructured">
+                      <r1792x1024
+                        jcr:primaryType="nt:unstructured"
+                        text="Landscape (1792x1024)"
+                        value="1792x1024" />
+                      <r1024x1024
+                        jcr:primaryType="nt:unstructured"
+                        text="Square (1024x1024)"
+                        value="1024x1024" />
+                      <r1024x1792
+                        jcr:primaryType="nt:unstructured"
+                        text="Portrait (1024x1792)"
+                        value="1024x1792" />
+                      <auto
+                        jcr:primaryType="nt:unstructured"
+                        text="Auto"
+                        value="auto" />
+                    </items>
+                  </bannerSize>
+
+                  <bannerFormat
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                    fieldLabel="Select banner format"
+                    fieldDescription="Select the format for the banner generation. URL gives better results, but only last 1 hour."
+                    name="./bannerFormat">
+                    <items jcr:primaryType="nt:unstructured">
+                      <url
+                        jcr:primaryType="nt:unstructured"
+                        text="url"
+                        value="url" />
+                      <base64
+                        jcr:primaryType="nt:unstructured"
+                        text="base64"
+                        value="b64_json" />
+                    </items>
+                  </bannerFormat>
+
+                  <bannerImage
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="granite/ui/components/coral/foundation/form/hidden"
+                    name="./bannerImage"
+                    value="" />
+
                   <contentMultifield
                     jcr:primaryType="nt:unstructured"
                     sling:resourceType="granite/ui/components/coral/foundation/form/multifield"
@@ -99,21 +142,61 @@
                       sling:resourceType="granite/ui/components/coral/foundation/container"
                       name="./contentMultifield">
                       <items jcr:primaryType="nt:unstructured">
+
+                        <subtitleHeadingType
+                          jcr:primaryType="nt:unstructured"
+                          sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                          fieldLabel="Select Heading Type"
+                          fieldDescription="Heading type for the subtitle"
+                          name="./subtitleHeadingType">
+                          <items jcr:primaryType="nt:unstructured">
+                            <h2
+                              jcr:primaryType="nt:unstructured"
+                              text="H2"
+                              value="h2" />
+                            <h3
+                              jcr:primaryType="nt:unstructured"
+                              text="H3"
+                              value="h3" />
+                            <h4
+                              jcr:primaryType="nt:unstructured"
+                              text="H4"
+                              value="h4" />
+                            <h5
+                              jcr:primaryType="nt:unstructured"
+                              text="H5"
+                              value="h5" />
+                            <h6
+                              jcr:primaryType="nt:unstructured"
+                              text="H6"
+                              value="h6" />
+                          </items>
+                        </subtitleHeadingType>
+
                         <subtitle
                           jcr:primaryType="nt:unstructured"
                           sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                           fieldLabel="Subtitle"
                           fieldDescription="Subtitle for the generated paragraph"
                           name="./subtitle" />
+
                         <promptValue
                           jcr:primaryType="nt:unstructured"
                           sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                           fieldLabel="Enter a prompt for generate a paragraph"
                           fieldDescription="Prompt for generate a paragraph"
                           name="./promptValue" />
+
+                        <promptResponse
+                          jcr:primaryType="nt:unstructured"
+                          sling:resourceType="granite/ui/components/coral/foundation/form/hidden"
+                          name="./promptResponse"
+                          value="" />
+
                       </items>
                     </field>
                   </contentMultifield>
+
                 </items>
               </column>
             </items>

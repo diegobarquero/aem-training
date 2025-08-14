@@ -17,9 +17,6 @@ import java.io.OutputStream;
 import java.util.Scanner;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
-
 @Model(adaptables = SlingHttpServletRequest.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class ChatGPTApiModel {
 
@@ -29,40 +26,34 @@ public class ChatGPTApiModel {
     @ValueMapValue
     private String apiKey;
 
-    // @ValueMapValue
-    // private String prompt;
-
     @ValueMapValue
     private String bannerPrompt;
 
     @ValueMapValue
     private Boolean lockGeneration;
 
+    @ValueMapValue
+    private String bannerSize; 
+
+    @ValueMapValue
+    private String bannerFormat; 
+
     @Inject
     private Resource resource;
-
-    // private List<String> contentData = new ArrayList<>();
-    // private final List<Map<String, Object>> contentData = new ArrayList<>();
-
-    // private String responseText;
-    // private String responseImage;
 
     @PostConstruct
     protected void init() {
       if (lockGeneration == false) {
         try {
-          // responseImage = callChatGPTImagesGenerations();
           Resource multifieldParent = resource.getChild("contentMultifield");
-          // String contextText = "contextText something diff here"; 
-          
-          // Resource resourceTest = request.getResource();
           
           // Generate Banner Image 
           ModifiableValueMap mvn = resource.adaptTo(ModifiableValueMap.class);
-          String bannerImage = "noimage"; //callChatGPTImagesGenerations();
+          String bannerImage = callChatGPTImagesGenerations(); // "noimage";
           
           if(mvn != null && bannerImage != null && !bannerImage.equals("noimage")) {
               mvn.put("bannerImage", bannerImage);
+              mvn.put("lockGeneration", true);
               resource.getResourceResolver().commit();
           }
           
@@ -155,7 +146,8 @@ public class ChatGPTApiModel {
           rootNode.put("model", "dall-e-3");
           rootNode.put("prompt", bannerPrompt);
           rootNode.put("n", 1);
-          rootNode.put("size", "1024x1024");
+          rootNode.put("size", bannerSize != null ? bannerSize : "1024x1024");
+          rootNode.put("response_format", bannerFormat != null ? bannerFormat : "b64_json");
 
           try (OutputStream os = connection.getOutputStream()) {
               byte[] input = mapper.writeValueAsBytes(rootNode);
@@ -167,7 +159,7 @@ public class ChatGPTApiModel {
             String responseJson = scanner.hasNext() ? scanner.next() : "";
 
             JsonNode root = mapper.readTree(responseJson);
-            return root.path("data").get(0).path("url").asText();
+            return root.path("data").get(0).path(bannerFormat != null ? bannerFormat : "b64_json").asText();
           }
       } 
       catch (Exception e) {
@@ -180,20 +172,4 @@ public class ChatGPTApiModel {
           }
       }
     }
-
-    // public List<Map<String, Object>> getContentValue() {
-    //     return contentData;
-    // }
-
-    // public List<String> getContentData() {
-    //     return contentData;
-    // }
-
-    // public String getResponseText() {
-    //     return responseText;
-    // }
-
-    // public String getResponseImage() {
-    //     return responseImage;
-    // }
 }

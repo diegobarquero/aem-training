@@ -1,21 +1,34 @@
-<p>${properties.lockGeneration} !!
-</p>
-
-<sly data-sly-test.lockGeneration="${properties.lockGeneration}">${properties.lockGeneration} ??
+<sly data-sly-test.lockGeneration="${!properties.lockGeneration}">
+  <sly data-sly-use.model="com.adobe.aem.studio.core.models.ChatGPTApiModel" />
 </sly>
 
-<sly data-sly-use.model="com.adobe.aem.studio.core.models.ChatGPTApiModel">
-  <div>
-    <h1 data-sly-test.title="${properties.title}">${title}</h1>
-    <img data-sly-test.bannerImage="${properties.bannerImage}" src="${bannerImage}">
+<div class="article-ai-component">
+  <div class="image-container">
+    <img data-sly-test.bannerImage="${properties.bannerImage}"
+      src="${properties.bannerFormat == 'b64_json' ? 'data:image/png;base64,' : ''}${properties.bannerImage}">
   </div>
 
-  <div data-sly-list.contentMultifield="${resource.getChildren}">
-    <div data-sly-test="${contentMultifield.name == 'contentMultifield'}">
-      <div data-sly-list.content="${contentMultifield.getChildren}">
-        <h2 data-sly-test.subtitle="${content.subtitle}">${subtitle}</h2>
-        <p data-sly-test.paragraph="${content.promptResponse}">${paragraph}</p>
+  <div class="article-container">
+    <div class="title-container">
+      <h1 data-sly-test.title="${properties.title}">${properties.title}</h1>
+      <div class="meta-info">
+        <span data-sly-test.lastModifiedBy="${properties.jcr:lastModifiedBy}">By: ${lastModifiedBy} / </span>
+        <span data-sly-test="${properties['jcr:lastModified'].getTime}">
+          ${'dd MMM yyyy, HH:mm' @ format=properties['jcr:lastModified'].getTime}
+        </span>
+      </div>
+    </div>
+
+    <div class="content-container" data-sly-list.contentMultifield="${resource.getChildren}">
+      <div data-sly-test="${contentMultifield.name == 'contentMultifield'}">
+        <div class="section-container" data-sly-list.content="${contentMultifield.getChildren}">
+          <sly data-sly-test.subtitle="${content.subtitle}">
+            <h2 data-sly-element="${content.subtitleHeadingType}">${subtitle}</h2>
+          </sly>
+          <p data-sly-test.paragraph="${content.promptResponse}">${paragraph}</p>
+        </div>
       </div>
     </div>
   </div>
-</sly>
+
+</div>
