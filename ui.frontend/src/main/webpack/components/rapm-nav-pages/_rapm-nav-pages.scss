@@ -157,4 +157,12 @@
         }
     }
 
+    @media (prefers-color-scheme: light) {
+
+        h3,
+        .min-read {
+            color: #131313;
+        }
+    }
+
 }

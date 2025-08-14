@@ -1,0 +1,52 @@
+<sly data-sly-use.templates="core/wcm/components/commons/v1/templates.html" />
+<sly data-sly-call="${templates.placeholder @ isEmpty = !resource.getChildren}" />
+
+
+<sly data-sly-test="${properties.populationMode == 'single'}">
+
+    <sly data-sly-use.model="com.adobe.aem.studio.core.models.PokeApiModel" />
+
+    <div data-sly-test="${model.name && model.name != 'Error'}" class="pokedex-container ${properties.populationMode}">
+        <div class="sprite-container">
+            <img src="${model.spriteUrl}" alt="${model.name}" />
+        </div>
+        <div class="pokemon-labels">
+            <h2>${model.name}</h2>
+            <ul data-sly-list.type="${model.types}">
+                <li data-color="${type}">${type}</li>
+            </ul>
+        </div>
+    </div>
+
+    <div data-sly-test="${model.name == 'Error'}">
+        <p>Error while getting this pokemon: ${model.pokesearch}</p>
+    </div>
+
+</sly>
+
+<sly data-sly-test="${properties.populationMode == 'multiple'}">
+
+    <sly data-sly-use.model="com.adobe.aem.studio.core.models.PokeMultipleApiModel" />
+    <div data-sly-list.pokemon="${model.pokemons}" class="${properties.populationMode}">
+
+        <div class="pokedex-container">
+            <div class="sprite-container">
+                <img src="${pokemon.spriteUrl}" alt="${pokemon.name}" />
+            </div>
+            <div class="pokemon-labels">
+                <h2>${pokemon.name}</h2>
+                <ul data-sly-list.type="${pokemon.types}">
+                    <li data-color="${type}">${type}</li>
+                </ul>
+            </div>
+        </div>
+
+        <div data-sly-test="${model.name == 'Error'}">
+            <p>Error while getting this pokemon: ${model.pokesearch}</p>
+        </div>
+
+    </div>
+
+
+
+</sly>

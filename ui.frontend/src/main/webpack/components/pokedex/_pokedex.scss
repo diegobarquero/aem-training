@@ -1,0 +1,126 @@
+$types: (
+    fire: #fd7d24,
+    grass: #9bcc50,
+    poison: #b97fc9,
+    water: #4592c4,
+    flying: #A890F0,
+    normal: #A8A878,
+    electric: #eed535,
+    ground: #ab9842,
+    fairy: #fdb9e9,
+    bug: #729f3f,
+    fighting: #C03028,
+    rock: #a38c21,
+    ghost: #7b62a3,
+    psychic: #f366b9,
+    dragon: #7038F8,
+    steel: #9eb7b8,
+    ice: #98D8D8,
+    dark: #705848
+);
+
+.multiple {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 2em 0;
+}
+
+.pokedex-container {
+
+    &.single {
+        margin: 0 auto;
+    }
+    position: relative;
+    max-width: 350px;
+    height: 300px;
+    
+    padding-top: 2em;
+    box-sizing: border-box;
+    text-align: center;
+    text-transform: capitalize;
+    background-color: #e25a5a;
+    border-radius: 10px;
+
+    .pokemon-labels {
+        position: relative;
+        z-index: 2;
+    }
+
+    &::after {
+        content: "";
+        position: absolute;
+        width: 22rem;
+        height: 12.9rem;
+        background-color: #cfcfcf;
+        top: 31.8%;
+        left: 0px;
+        border-bottom-left-radius: 10px;
+        border-bottom-right-radius: 10px;
+        z-index: 0;
+    }
+
+    .sprite-container {
+        position: relative;
+
+        img {
+            z-index: 2;
+            position: relative;
+        }
+
+        &::after {
+            content: "";
+            position: absolute;
+            width: 7rem;
+            height: 7rem;
+            background-color: #131313;
+            border-radius: 50%;
+            z-index: 1;
+            left: 33.5%;
+            top: -6%;
+        }
+
+        &::before {
+            content: "";
+            position: absolute;
+            z-index: 1;
+            width: 100%;
+            height: 2rem;
+            left: 0;
+            background-color: #131313;
+            top: 30%;
+
+        }
+    }
+
+    ul {
+        display: flex;
+        justify-content: center;
+        padding: 0;
+        gap: 0.5em;
+
+
+        li {
+            padding: 0.2em 1em;
+            border-radius: 6px;
+            font-weight: 600;
+            text-shadow: -1px 1px 16px rgba(0, 0, 0, 1);
+
+            @each $type, $color in $types {
+                &[data-color="#{$type}"] {
+                    background-color: $color;
+                }
+            }
+
+            &::marker {
+                content: '';
+            }
+
+
+        }
+    }
+
+    h2 {
+        text-shadow: 1px 1px 6px rgba(0, 0, 0, 50);
+    }
+
+}

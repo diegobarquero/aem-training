@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0"
+    xmlns:granite="http://www.adobe.com/jcr/granite/1.0"
+    xmlns:jcr="http://www.jcp.org/jcr/1.0"
+    xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+    xmlns:cq="http://www.day.com/jcr/cq/1.0" jcr:primaryType="nt:unstructured" jcr:title="Pokedex Component" sling:resourceType="cq/gui/components/authoring/dialog">
+    <content jcr:primaryType="nt:unstructured" sling:resourceType="granite/ui/components/coral/foundation/container" granite:class="cmp-container__editor">
+        <items jcr:primaryType="nt:unstructured">
+            <tabs
+            jcr:primaryType="nt:unstructured"
+            sling:resourceType="granite/ui/components/coral/foundation/tabs"
+            maximized="{Boolean}true">
+
+                <items jcr:primaryType="nt:unstructured"
+                        sling:hideChildren="[*]">
+                    <general
+                        jcr:primaryType="nt:unstructured"
+                        jcr:title="General"
+                        sling:resourceType="granite/ui/components/coral/foundation/container"
+                        margin="{Boolean}true">
+                        <items jcr:primaryType="nt:unstructured">
+                            <columns
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns"
+                            margin="{Boolean}true">
+                                <items jcr:primaryType="nt:unstructured">
+                                    <column
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/container">
+                                        <items jcr:primaryType="nt:unstructured">
+
+                                            <populationMode
+                                                granite:class="cq-dialog-dropdown-showhide"
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                                                fieldLabel="Variation"
+                                                fieldDescription="Variation show/hide."
+                                                validation="mf-remove-hidden-required"
+                                                name="./populationMode">
+                                                <granite:data
+                                                    jcr:primaryType="nt:unstructured"
+                                                    cq-dialog-dropdown-showhide-target=".populationMode-showhide-target"/>
+                                                <items jcr:primaryType="nt:unstructured">
+                                                    <single
+                                                        jcr:primaryType="nt:unstructured"
+                                                        text="Single"
+                                                        value="single"/>
+                                                    <multiple
+                                                        jcr:primaryType="nt:unstructured"
+                                                        text="Multiple"
+                                                        value="multiple"/>
+                                                </items>
+                                            </populationMode>
+
+                                            <customSingleOpt jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/container"
+                                                granite:class="hide populationMode-showhide-target">
+                                                <granite:data
+                                                    jcr:primaryType="nt:unstructured"
+                                                    showhidetargetvalue="single"/>
+                                                <items jcr:primaryType="nt:unstructured">
+
+                                                    <pokesearch 
+                                                        jcr:primaryType="nt:unstructured" 
+                                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield" 
+                                                        fieldLabel="Pokemon search"
+                                                        fieldDescription="Type a pokemon name or its pokemon ID"
+                                                        name="./pokesearch"/>                                                
+
+                                                </items>
+                                            </customSingleOpt>
+
+                                            <customMultipleOpt jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/container"
+                                                granite:class="hide populationMode-showhide-target">
+                                                <granite:data
+                                                    jcr:primaryType="nt:unstructured"
+                                                    showhidetargetvalue="multiple"/>
+                                                <items jcr:primaryType="nt:unstructured">
+
+                                                    <pokeAmount
+                                                        jcr:primaryType="nt:unstructured" 
+                                                        sling:resourceType="granite/ui/components/coral/foundation/form/numberfield" 
+                                                        fieldLabel="Pokemon Amount"
+                                                        fieldDescription="Type a pokemon quantity"
+                                                        name="./pokeAmount"
+                                                        min="{Long}1"
+                                                        max="{Long}20"
+                                                        step="{Double}1"/>
+
+                                                    <pokeOffset
+                                                        jcr:primaryType="nt:unstructured" 
+                                                        sling:resourceType="granite/ui/components/coral/foundation/form/numberfield" 
+                                                        fieldLabel="Offset"
+                                                        fieldDescription="Offset for the pokemons"
+                                                        name="./pokeOffset"
+                                                        min="{Long}1"
+                                                        max="{Long}20"
+                                                        step="{Double}1"/>                                      
+
+                                                </items>
+                                            </customMultipleOpt>                                            
+                                        </items>
+                                    </column>
+                                </items>
+                            </columns>
+                        </items>
+                    </general>
+
+                    <styles
+                        jcr:primaryType="nt:unstructured"
+                        jcr:title="Styles"
+                        sling:resourceType="granite/ui/components/coral/foundation/container"
+                        margin="{Boolean}true">
+                        <items jcr:primaryType="nt:unstructured">
+                            <columns
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns"
+                                margin="{Boolean}true">
+                                <items jcr:primaryType="nt:unstructured">
+                                    <column
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/container">
+
+                                        <items jcr:primaryType="nt:unstructured">
+
+                                            <variants
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                                                fieldLabel="Display your pages"
+                                                fieldDescription="Select how to display your pages"
+                                                name="./pagestyle">
+                                                <items jcr:primaryType="nt:unstructured">
+                                                    <horizontal
+                                                        jcr:primaryType="nt:unstructured"
+                                                        text="Horizontal"
+                                                        value="horizontal" />
+                                                    <vertical
+                                                        jcr:primaryType="nt:unstructured"
+                                                        text="Vertical"
+                                                        value="vertical" />
+                                                </items>
+                                            </variants>    
+                                        </items>
+                                    </column>
+                                </items>
+                            </columns>
+                        </items>
+                    </styles>
+                </items>
+            </tabs>
+        </items>
+    </content>
+</jcr:root>
