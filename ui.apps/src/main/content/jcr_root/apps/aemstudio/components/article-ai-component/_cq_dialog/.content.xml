@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root
+  xmlns:sling="http://sling.apache.org/jcr/sling/1.0"
+  xmlns:granite="http://www.adobe.com/jcr/granite/1.0"
+  xmlns:jcr="http://www.jcp.org/jcr/1.0"
+  xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+  xmlns:cq="http://www.day.com/jcr/cq/1.0"
+  jcr:primaryType="nt:unstructured"
+  jcr:title="Article AI Component"
+  sling:resourceType="cq/gui/components/authoring/dialog">
+
+  <content
+    jcr:primaryType="nt:unstructured"
+    sling:resourceType="granite/ui/components/coral/foundation/container"
+    granite:class="cmp-container__editor">
+
+    <items jcr:primaryType="nt:unstructured">
+      <tabs
+        jcr:primaryType="nt:unstructured"
+        sling:resourceType="granite/ui/components/coral/foundation/tabs">
+        <items jcr:primaryType="nt:unstructured">
+          <!-- TAB 1: OpenAI Configuration -->
+          <tab1
+            jcr:primaryType="nt:unstructured"
+            jcr:title="OpenAI Configuration"
+            sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns">
+
+            <items jcr:primaryType="nt:unstructured">
+              <column
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="granite/ui/components/coral/foundation/container">
+
+                <items jcr:primaryType="nt:unstructured">
+                  <apiKey
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                    fieldLabel="OpenAI API Key"
+                    fieldDescription="OpenAI API Key"
+                    name="./apiKey"
+                    required="{Boolean}True" />
+                </items>
+
+              </column>
+            </items>
+          </tab1>
+
+          <!-- TAB 2: Content configuration -->
+          <tab2
+            jcr:primaryType="nt:unstructured"
+            jcr:title="Content configuration"
+            sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns">
+
+            <items jcr:primaryType="nt:unstructured">
+              <column
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="granite/ui/components/coral/foundation/container">
+
+                <items jcr:primaryType="nt:unstructured">
+                  <title
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                    fieldLabel="Article title"
+                    fieldDescription="Article title."
+                    name="./title"
+                    required="{Boolean}True" />
+
+                  <lockGeneration
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
+                    fieldDescription="If this field is unchecked, the AI will generate a new banner."
+                    name="./lockGeneration"
+                    text="Lock generation"
+                    uncheckedValue="{Boolean}false"
+                    value="{Boolean}true" />
+
+                  <bannerPrompt
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                    fieldLabel="Enter prompt for generate a banner"
+                    fieldDescription="Prompt for banner generation"
+                    name="./bannerPrompt"
+                    required="{Boolean}False" />
+
+                  <bannerSize
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                    fieldLabel="Select banner size"
+                    fieldDescription="Select the size of the banner image. Recommended size is landscape (1792x1024)."
+                    name="./bannerSize">
+                    <items jcr:primaryType="nt:unstructured">
+                      <r1792x1024
+                        jcr:primaryType="nt:unstructured"
+                        text="Landscape (1792x1024)"
+                        value="1792x1024" />
+                      <r1024x1024
+                        jcr:primaryType="nt:unstructured"
+                        text="Square (1024x1024)"
+                        value="1024x1024" />
+                      <r1024x1792
+                        jcr:primaryType="nt:unstructured"
+                        text="Portrait (1024x1792)"
+                        value="1024x1792" />
+                      <auto
+                        jcr:primaryType="nt:unstructured"
+                        text="Auto"
+                        value="auto" />
+                    </items>
+                  </bannerSize>
+
+                  <bannerFormat
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                    fieldLabel="Select banner format"
+                    fieldDescription="Select the format for the banner generation. URL gives better results, but only last 1 hour."
+                    name="./bannerFormat">
+                    <items jcr:primaryType="nt:unstructured">
+                      <url
+                        jcr:primaryType="nt:unstructured"
+                        text="url"
+                        value="url" />
+                      <base64
+                        jcr:primaryType="nt:unstructured"
+                        text="base64"
+                        value="b64_json" />
+                    </items>
+                  </bannerFormat>
+
+                  <bannerImage
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="granite/ui/components/coral/foundation/form/hidden"
+                    name="./bannerImage"
+                    value="" />
+
+                  <contentMultifield
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="granite/ui/components/coral/foundation/form/multifield"
+                    fieldLabel="Content Multifield"
+                    fieldDescription="Enter prompts for AI content generation."
+                    composite="{Boolean}true">
+                    <field
+                      jcr:primaryType="nt:unstructured"
+                      sling:resourceType="granite/ui/components/coral/foundation/container"
+                      name="./contentMultifield">
+                      <items jcr:primaryType="nt:unstructured">
+
+                        <subtitleHeadingType
+                          jcr:primaryType="nt:unstructured"
+                          sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                          fieldLabel="Select Heading Type"
+                          fieldDescription="Heading type for the subtitle"
+                          name="./subtitleHeadingType">
+                          <items jcr:primaryType="nt:unstructured">
+                            <h2
+                              jcr:primaryType="nt:unstructured"
+                              text="H2"
+                              value="h2" />
+                            <h3
+                              jcr:primaryType="nt:unstructured"
+                              text="H3"
+                              value="h3" />
+                            <h4
+                              jcr:primaryType="nt:unstructured"
+                              text="H4"
+                              value="h4" />
+                            <h5
+                              jcr:primaryType="nt:unstructured"
+                              text="H5"
+                              value="h5" />
+                            <h6
+                              jcr:primaryType="nt:unstructured"
+                              text="H6"
+                              value="h6" />
+                          </items>
+                        </subtitleHeadingType>
+
+                        <subtitle
+                          jcr:primaryType="nt:unstructured"
+                          sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                          fieldLabel="Subtitle"
+                          fieldDescription="Subtitle for the generated paragraph"
+                          name="./subtitle" />
+
+                        <promptValue
+                          jcr:primaryType="nt:unstructured"
+                          sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                          fieldLabel="Enter a prompt for generate a paragraph"
+                          fieldDescription="Prompt for generate a paragraph"
+                          name="./promptValue" />
+
+                        <promptResponse
+                          jcr:primaryType="nt:unstructured"
+                          sling:resourceType="granite/ui/components/coral/foundation/form/hidden"
+                          name="./promptResponse"
+                          value="" />
+
+                      </items>
+                    </field>
+                  </contentMultifield>
+
+                </items>
+              </column>
+            </items>
+          </tab2>
+        </items>
+      </tabs>
+    </items>
+
+  </content>
+</jcr:root>
