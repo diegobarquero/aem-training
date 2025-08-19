@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:granite="http://www.adobe.com/jcr/granite/1.0"
+          xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+          xmlns:cq="http://www.day.com/jcr/cq/1.0"
+          jcr:primaryType="nt:unstructured"
+          jcr:title="Studio Header"
+          sling:resourceType="cq/gui/components/authoring/dialog">
+    <content
+        jcr:primaryType="nt:unstructured"
+        sling:resourceType="granite/ui/components/coral/foundation/container"
+        granite:class="cmp-container__editor">
+        <items jcr:primaryType="nt:unstructured">
+          <column
+              jcr:primaryType="nt:unstructured"
+              sling:resourceType="granite/ui/components/coral/foundation/container">
+                <items jcr:primaryType="nt:unstructured">
+                  <column jcr:primaryType="nt:unstructured"
+                    granite:class="card-type"
+                    sling:resourceType="granite/ui/components/coral/foundation/container">
+                    <items jcr:primaryType="nt:unstructured">
+                      <headerlogo
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+                        fieldLabel="Header Logo"
+                        fieldDescription="Header Logo"
+                        forceSelection="{Boolean}true"
+                        name="./headerlogo" 
+                        rootPath="/content/dam/aemstudio" />
+
+                      <menulinks
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="granite/ui/components/coral/foundation/form/multifield"
+                        fieldDescription="Click 'add' to add a new link" 
+                        composite="{Boolean}true">
+                        <field
+                          jcr:primaryType="nt:unstructured"
+                          sling:resourceType="granite/ui/components/coral/foundation/container"
+                          name="./menulinks">
+                          <items jcr:primaryType="nt:unstructured">
+                            <itemtitle
+                              jcr:primaryType="nt:unstructured"
+                              sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                              fieldLabel="Item title"
+                              fieldDescription="This is a Textfield."
+                              name="./itemtitle"
+                              required="{Boolean}True"/>
+
+                            <itemlink
+                              jcr:primaryType="nt:unstructured"
+                              sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+                              fieldLabel="Item Link"
+                              fieldDescription="Select the card link"
+                              forceSelection="{Boolean}true"
+                              name="./itemlink" 
+                              rootPath="/content/aemstudio" />
+                          </items>
+                        </field>
+                      </menulinks>
+                    </items>
+                  </column>
+              </items>
+            </column>
+        </items>
+    </content>
+</jcr:root>
+

@@ -1,0 +1,16 @@
+<div class="studio-header">
+  <img src="${properties.headerlogo}" alt="logo" />
+
+  <sly data-sly-list.menuMultifield="${resource.getChildren}">
+    <sly data-sly-test="${menuMultifield.name == 'menulinks'}">
+      <ul>
+        <li>
+          <p>👋</p>
+        </li>
+        <sly data-sly-list.item="${menuMultifield.getChildren}">
+          <li data-sly-test.itemtitle="${item.itemtitle}"><a href="${item.itemlink}">${itemtitle}</a></li>
+        </sly>
+      </ul>
+    </sly>
+  </sly>
+</div><!-- end.studio-header -->
