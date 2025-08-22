@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root
+    xmlns:sling="http://sling.apache.org/jcr/sling/1.0"
+    xmlns:cq="http://www.day.com/jcr/cq/1.0"
+    xmlns:jcr="http://www.jcp.org/jcr/1.0"
+    xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+    xmlns:granite="http://www.adobe.com/jcr/granite/1.0"
+    jcr:primaryType="nt:unstructured"
+    jcr:title="JQP Sidebar Menu"
+    sling:resourceType="cq/gui/components/authoring/dialog"
+    >
+
+    <content
+        jcr:primaryType="nt:unstructured"
+        sling:resourceType="granite/ui/components/coral/foundation/container">
+
+        <items jcr:primaryType="nt:unstructured">
+            <tabs
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="granite/ui/components/coral/foundation/tabs">
+
+                <items jcr:primaryType="nt:unstructured">
+
+                    <!-- TAB 1: General -->
+                    <general
+                        jcr:primaryType="nt:unstructured"
+                        jcr:title="General"
+                        sling:resourceType="granite/ui/components/coral/foundation/container">
+
+                        <items jcr:primaryType="nt:unstructured">
+                            <logoPath
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/foundation/form/pathbrowser"
+                                name="./logoPath"
+                                fieldLabel="Logo"
+                                rootPath="/content/dam/aemstudio"
+                                required="true"
+                                />
+                        </items>
+                    </general>
+
+                    <!-- TAB 2: Menu Items -->
+                    <menuItemsTab
+                        jcr:primaryType="nt:unstructured"
+                        jcr:title="Menu Items"
+                        sling:resourceType="granite/ui/components/coral/foundation/container">
+
+                        <items jcr:primaryType="nt:unstructured">
+                            <menuItems
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/multifield"
+                                fieldLabel="Menu Items"
+                                composite="true"
+                                name="./menuItems">
+
+                                <field jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/form/fieldset"
+                                    name="./menuItem">
+
+                                    <layout
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/layouts/fixedcolumns" />
+
+                                    <items jcr:primaryType="nt:unstructured">
+
+                                        <title
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                            name="./title"
+                                            fieldLabel="Título"
+                                            required="true"/>
+
+                                        
+                                        <linkType
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                                            name="./linkType"
+                                            fieldLabel="Tipo de enlace"
+                                            granite:class="link-type-selector">
+                                            <items jcr:primaryType="nt:unstructured">
+                                                <internal jcr:primaryType="nt:unstructured" text="Interna" value="internal"/>
+                                                <external jcr:primaryType="nt:unstructured" text="Externa" value="external"/>
+                                            </items>
+                                        </linkType>
+
+                                        <internalLink
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/foundation/form/pathbrowser"
+                                            name="./internalLink"
+                                            fieldLabel="Página interna"
+                                            rootPath="/content/aemstudio"
+                                            predicate="hierarchyNotFile"
+                                            granite:class="link-field internal-link"/>
+
+                                        <externalLink
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                            name="./externalLink"
+                                            fieldLabel="Enlace externo"
+                                            granite:class="link-field external-link"/>
+
+                                        <!-- Icon -->
+                                        <icon
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                                            name="./icon"
+                                            fieldLabel="Ícono">
+                                            <items jcr:primaryType="nt:unstructured">
+                                                <home jcr:primaryType="nt:unstructured" text="Home" value="fa fa-home"/>
+                                                <user jcr:primaryType="nt:unstructured" text="User" value="fa fa-user"/>
+                                                <settings jcr:primaryType="nt:unstructured" text="Settings" value="fa fa-cog"/>
+                                                <info jcr:primaryType="nt:unstructured" text="Info" value="fa fa-info-circle"/>
+                                                <contact jcr:primaryType="nt:unstructured" text="Contact" value="fa fa-envelope"/>
+                                            </items>
+                                        </icon>
+
+
+                                        <!-- Subitems -->
+                                        <subItems
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/form/multifield"
+                                            fieldLabel="Subitems"
+                                            composite="true"
+                                            name="./subItems">
+
+                                            <field jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/fieldset"
+                                                name="./subItem">
+
+                                                <layout
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="granite/ui/components/coral/foundation/layouts/fixedcolumns"/>
+
+                                                <items jcr:primaryType="nt:unstructured">
+                                                    <title
+                                                        jcr:primaryType="nt:unstructured"
+                                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                        name="./title"
+                                                        fieldLabel="Subitem Título"
+                                                        required="true" />
+                                                    
+                                                    <!-- Tipo de enlace -->
+                                                    
+                                                    <linkType
+                                                        jcr:primaryType="nt:unstructured"
+                                                        sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                                                        name="./linkType"
+                                                        fieldLabel="Tipo de enlace"
+                                                        granite:class="link-type-selector">
+                                                        <items jcr:primaryType="nt:unstructured">
+                                                            <internal jcr:primaryType="nt:unstructured" text="Interna" value="internal"/>
+                                                            <external jcr:primaryType="nt:unstructured" text="Externa" value="external"/>
+                                                        </items>
+                                                    </linkType>
+
+                                                    <!-- Enlace interno -->
+                                                    <internalLink
+                                                        jcr:primaryType="nt:unstructured"
+                                                        sling:resourceType="granite/ui/components/foundation/form/pathbrowser"
+                                                        name="./internalLink"
+                                                        fieldLabel="Página interna"
+                                                        rootPath="/content/aemstudio"
+                                                        predicate="hierarchyNotFile"
+                                                        granite:class="link-field internal-link"/>
+
+                                                    <!-- Enlace externo -->
+                                                    <externalLink
+                                                        jcr:primaryType="nt:unstructured"
+                                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                        name="./externalLink"
+                                                        fieldLabel="Enlace externo"
+                                                        granite:class="link-field external-link"/>
+
+                                                </items>
+                                            </field>
+                                        </subItems>
+
+                                    </items>
+                                </field>
+                            </menuItems>
+                        </items>
+                    </menuItemsTab>
+
+                </items>
+            </tabs>
+        </items>
+    </content>
+</jcr:root>

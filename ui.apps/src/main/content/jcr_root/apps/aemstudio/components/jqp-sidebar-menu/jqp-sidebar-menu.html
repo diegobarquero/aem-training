@@ -1,0 +1,69 @@
+<sly
+  data-sly-use.model="com.adobe.aem.studio.core.models.JqpSidebarMenuModel"
+/>
+
+<sly data-sly-unwrap>
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css"
+  />
+</sly>
+
+<!-- Sidebar Container -->
+<div id="nav-bar" class="night">
+  <!-- Header -->
+  <div id="nav-header">
+    <a id="nav-title" href="/">
+      <img src="${model.logoPath}" alt="Logo" />
+    </a>
+    <button class="toggle-btn toggleSidebar">&times;</button>
+  </div>
+
+  <hr />
+
+  <!-- Menu Content -->
+  <div id="nav-content">
+    <sly data-sly-list.item="${model.menuItems}">
+      <div class="nav-item">
+        <a
+          class="nav-button${!item.subItems.isEmpty ? ' toggle-submenu' : ''}"
+          data-sly-attribute.href="${item.subItems.isEmpty ? item.url : ''}"
+          data-sly-attribute.target="${item.external && item.subItems.isEmpty ? '_blank' : ''}"
+        >
+          <i class="${item.icon}"></i>
+          <span>${item.title}</span>
+        </a>
+
+        <sly data-sly-test="${!item.subItems.isEmpty}">
+          <div class="submenu">
+            <sly data-sly-list.subItem="${item.subItems}">
+              <a
+                class="nav-sub-button"
+                data-sly-test="${subItem.url}"
+                data-sly-attribute.href="${subItem.url}"
+                data-sly-attribute.target="${subItem.external ? '_blank' : ''}"
+              >
+                ${subItem.title}
+              </a>
+            </sly>
+          </div>
+        </sly>
+      </div>
+    </sly>
+    <div id="nav-content-highlight"></div>
+  </div>
+
+  <label class="switch">
+    <input type="checkbox" id="toggleSwitch" checked />
+    <div class="slider">
+      <div class="sun"></div>
+      <div class="moon"></div>
+      <div class="star star1"></div>
+    </div>
+  </label>
+</div>
+
+<!-- Hamburger -->
+<div id="hamburger" class="toggleSidebar">
+  <i class="fas fa-bars"></i>
+</div>
