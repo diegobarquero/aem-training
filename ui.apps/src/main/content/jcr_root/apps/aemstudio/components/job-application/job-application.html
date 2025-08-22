@@ -1,0 +1,21 @@
+<div class="job-application" data-theme="light" data-use-case-type="${properties.useCaseType @ context='attribute'}"
+  data-submit-label="${properties.submitLabel @ context='attribute'}"
+  data-custom-name="${properties.customWizardName @ context='attribute'}"
+  data-custom-flow='${properties.customFlowJson @ context="attribute"}'>
+
+  <sly data-sly-set.titleText="${properties.title ? properties.title : 'Wizard Stepper Forms'}"></sly>
+  <h2 class="ja-title" data-default-title="${titleText @ context='text'}">
+    ${titleText @ context='text'}
+  </h2>
+
+  <div class="progress" role="progressbar" aria-valuemin="1" aria-valuemax="5" aria-valuenow="1">
+    <div class="progress-bar"></div>
+  </div>
+
+  <form class="wizard-form" novalidate>
+    <div class="steps-container"></div>
+  </form>
+
+  <!-- Optional: a container where we render the submissions view when asked -->
+  <div class="submissions-view" hidden></div>
+</div>

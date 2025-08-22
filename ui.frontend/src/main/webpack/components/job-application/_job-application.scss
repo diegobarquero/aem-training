@@ -1,0 +1,330 @@
+/* ========== Design Tokens ========== */
+:where(.job-application) {
+  --bg: #ffffff;
+  --surface: #f8fafc;
+  --surface-2: #f1f5f9;
+  --text: #0f172a;
+  --text-muted: #475569;
+  --border: #e2e8f0;
+  --ring: #2563eb;
+  --accent: #16a34a;
+  --accent-weak: #dcfce7;
+  --danger: #dc2626;
+  --danger-weak: #fee2e2;
+  --shadow: 0 1px 2px rgba(0,0,0,.08), 0 8px 24px rgba(0,0,0,.06);
+  --radius: 14px;
+  --radius-sm: 10px;
+  --gap: 16px;
+  --gap-lg: 20px;
+  --track: #e5e7eb;
+
+  color: var(--text);
+  background: transparent;
+  color-scheme: light;   /* default = light, even if OS is dark */
+}
+
+/* Dark mode is opt-in via data-theme="dark" on the root */
+:where(.job-application[data-theme="dark"]) {
+  --bg: #0b0f14;
+  --surface: #0f1720;
+  --surface-2: #111827;
+  --text: #e5e7eb;
+  --text-muted: #9aa4b2;
+  --border: #1f2937;
+  --ring: #7dd3fc;
+  --accent: #22c55e;
+  --accent-weak: rgba(34,197,94,.15);
+  --danger: #f87171;
+  --danger-weak: rgba(248,113,113,.15);
+  --shadow: 0 1px 2px rgba(0,0,0,.6), 0 10px 28px rgba(0,0,0,.45);
+  --track: #243041;
+  color-scheme: dark;
+}
+
+/* ========== Layout & Typography ========== */
+.job-application {
+  h2 {
+    font-size: clamp(1.3rem, 1.2rem + 1vw, 1.8rem);
+    font-weight: 700;
+    letter-spacing: .2px;
+    margin: 0 0 16px;
+    color: var(--ring);
+  }
+
+  .wizard-form {
+    margin-top: 8px;
+    margin-bottom: 2rem;
+  }
+
+  .steps-container {
+    display: grid;
+    gap: var(--gap-lg);
+  }
+
+  .sr-only {
+    position: absolute !important;
+    height: 1px; width: 1px;
+    overflow: hidden; clip: rect(1px,1px,1px,1px);
+    white-space: nowrap;
+  }
+}
+
+/* ========== Progress Bar ========== */
+.job-application .progress {
+  height: 8px;
+  background: var(--track);
+  border-radius: 999px;
+  overflow: hidden;
+  box-shadow: inset 0 0 0 1px rgba(0,0,0,.03);
+  margin: 8px 0 20px;
+}
+
+.job-application .progress .progress-bar {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, var(--accent) 0%, #60d394 100%);
+  transition: width .35s ease;
+}
+
+/* ========== Cards ========== */
+@mixin card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+.job-application .selector-card,
+.job-application .thanks-card,
+.job-application .subs-card,
+.job-application .subs-item,
+.job-application .step,
+.job-application .review-card {
+  @include card;
+}
+
+.job-application .selector-card,
+.job-application .thanks-card,
+.job-application .subs-card {
+  padding: clamp(16px, 2vw, 22px);
+}
+
+/* ========== Step Panels ========== */
+.job-application .step {
+  display: none;
+  padding: clamp(16px, 2vw, 22px);
+}
+.job-application .step.active { display: block; }
+
+.job-application .step h3 {
+  margin: 0 0 14px;
+  font-size: 1.125rem;
+}
+
+.job-application .fields-grid {
+  display: grid;
+  gap: var(--gap);
+  grid-template-columns: repeat(12, minmax(0,1fr));
+}
+.job-application .field { grid-column: span 6; }
+.job-application .field.field--full { grid-column: 1 / -1; }
+
+/* ========== Inputs & Labels ========== */
+.job-application .field label {
+  display: block;
+  font-size: .87rem;
+  color: var(--text-muted);
+  margin-bottom: 6px;
+}
+
+.job-application input,
+.job-application select,
+.job-application textarea {
+  width: 100%;
+  font: inherit;
+  color: var(--text);
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 10px 12px;
+  outline: none;
+  transition: border-color .15s ease, box-shadow .15s ease, background .15s ease;
+}
+
+.job-application textarea { min-height: 110px; resize: vertical; }
+
+.job-application input:focus,
+.job-application select:focus,
+.job-application textarea:focus {
+  border-color: var(--ring);
+  box-shadow: 0 0 0 4px color-mix(in oklab, var(--ring) 18%, transparent);
+}
+
+.job-application input:disabled,
+.job-application select:disabled,
+.job-application textarea:disabled {
+  opacity: .6;
+  cursor: not-allowed;
+}
+
+/* ========== Buttons ========== */
+@mixin btn-base {
+  appearance: none;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  padding: 10px 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: filter .15s ease, transform .02s ease;
+  will-change: filter;
+}
+.job-application .buttons {
+  display: flex; gap: 10px; align-items: center; margin-top: 14px;
+}
+
+.job-application .btn-primary { @include btn-base; background: var(--text); color: var(--bg); }
+.job-application .btn-secondary { @include btn-base; background: var(--surface-2); color: var(--text); border-color: var(--border); }
+.job-application .btn-accent { @include btn-base; background: var(--accent); color: #ffffff; }
+.job-application .btn-danger { @include btn-base; background: var(--danger); color: #fff; }
+.job-application .btn-danger-outline { @include btn-base; background: transparent; color: var(--danger); border-color: var(--danger); }
+
+.job-application button[disabled] { opacity: .5; cursor: not-allowed; }
+.job-application .btn-primary:hover,
+.job-application .btn-secondary:hover,
+.job-application .btn-accent:hover,
+.job-application .btn-danger:hover,
+.job-application .btn-danger-outline:hover { filter: brightness(1.05); }
+.job-application .btn-primary:active,
+.job-application .btn-secondary:active,
+.job-application .btn-accent:active,
+.job-application .btn-danger:active,
+.job-application .btn-danger-outline:active { transform: translateY(1px); }
+
+/* ========== Selector (start screen) ========== */
+.job-application .selector-card h3 { margin: 0 0 12px; }
+.job-application .selector-card select {
+  margin-top: 4px;
+}
+.job-application .selector-card .buttons { justify-content: flex-end; }
+
+.job-application .selector-card .buttons .btn-primary,
+.job-application .selector-card .buttons .btn-secondary {
+  min-width: 110px;
+}
+
+/* ========== Review & Submit ========== */
+.job-application .review-wrap {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0,1fr));
+  gap: var(--gap);
+}
+
+.job-application .review-card {
+  grid-column: span 6;
+  padding: 14px;
+}
+@media (max-width: 900px) {
+  .job-application .field { grid-column: span 12; }
+  .job-application .review-card { grid-column: 1 / -1; }
+}
+
+.job-application .review-card header {
+  display: flex; align-items: center; gap: 10px; margin-bottom: 8px;
+}
+.job-application .review-card .badge {
+  background: var(--accent-weak);
+  color: var(--accent);
+  font-weight: 700;
+  font-size: .75rem;
+  padding: 4px 8px;
+  border-radius: 999px;
+}
+.job-application .review-card h4 {
+  font-size: 1rem; margin: 0;
+}
+.job-application .review-grid {
+  display: grid; gap: 8px; grid-template-columns: 1fr 2fr;
+}
+.job-application .review-row {
+  display: contents;
+}
+.job-application .review-label {
+  color: var(--text-muted);
+}
+.job-application .review-value {
+  padding-left: 8px;
+}
+
+/* ========== Thanks Screen ========== */
+.job-application .thanks-card h3 { margin: 0 0 8px; }
+.job-application .thanks-card p { color: var(--text-muted); margin: 0 0 12px; }
+
+/* ========== Submissions View ========== */
+.job-application .subs-toolbar {
+  display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-bottom: 12px;
+}
+.job-application .subs-actions { display: flex; gap: 10px; align-items: center; }
+.job-application .subs-groups { display: grid; gap: 18px; }
+.job-application .group-title { margin: 4px 0; color: var(--text-muted); font-weight: 700; }
+
+.job-application .subs-actions .btn-primary,
+.job-application .subs-actions .btn-danger {
+  appearance: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+  padding: 10px 16px;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  font-weight: 600;
+  cursor: pointer;
+  transition: filter .15s ease, transform .02s ease;
+}
+
+.job-application .subs-actions .btn-primary { background: var(--text); color: var(--bg); }
+.job-application .subs-actions .btn-danger  { background: var(--danger); color: #fff; }
+
+.job-application .subs-actions .btn-primary:hover,
+.job-application .subs-actions .btn-danger:hover { filter: brightness(1.05); }
+
+.job-application .subs-actions .btn-primary:active,
+.job-application .subs-actions .btn-danger:active { transform: translateY(1px); }
+
+.job-application .subs-list { display: grid; gap: 10px; }
+
+.job-application .subs-item { padding: 0; overflow: hidden; }
+.job-application .subs-item header {
+  padding: 12px 14px;
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  align-items: center; gap: 10px;
+  border-bottom: 1px solid var(--border);
+  cursor: pointer;
+}
+.job-application .subs-item h5 { margin: 0; font-size: 0.95rem; }
+.job-application .subs-item time { color: var(--text-muted); font-size: 0.86rem; }
+.job-application .subs-item .btn-danger-outline { justify-self: end; }
+
+.job-application .subs-item .subs-body {
+  display: none;
+  padding: 12px 14px;
+  background: var(--surface);
+}
+.job-application .subs-item.open .subs-body { display: block; }
+
+.job-application .muted.empty {
+  color: var(--text-muted);
+  padding: 12px;
+  border: 1px dashed var(--border);
+  border-radius: var(--radius-sm);
+}
+
+/* ========== Focus visibility & a11y niceties ========== */
+.job-application :focus-visible {
+  outline: 3px solid color-mix(in oklab, var(--ring) 55%, transparent);
+  outline-offset: 2px;
+}
+@media (prefers-reduced-motion: reduce) {
+  .job-application * { transition: none !important; }
+}

@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cq:dialog
+    xmlns:cq="http://www.day.com/jcr/cq/1.0"
+    xmlns:jcr="http://www.jcp.org/jcr/1.0"
+    xmlns:sling="http://sling.apache.org/jcr/sling/1.0"
+    xmlns:granite="http://www.adobe.com/jcr/granite/1.0"
+    jcr:primaryType="nt:unstructured"
+    sling:resourceType="cq/gui/components/authoring/dialog">
+
+  <content
+      jcr:primaryType="nt:unstructured"
+      sling:resourceType="granite/ui/components/coral/foundation/container">
+    <items jcr:primaryType="nt:unstructured">
+      <column
+          jcr:primaryType="nt:unstructured"
+          sling:resourceType="granite/ui/components/coral/foundation/container">
+        <items jcr:primaryType="nt:unstructured">
+
+          <title
+            jcr:primaryType="nt:unstructured"
+            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+            fieldLabel="Form Title"
+            name="./title"
+            required="{Boolean}true"/>
+
+          <submitLabel
+            jcr:primaryType="nt:unstructured"
+            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+            fieldLabel="Submit Button Label"
+            name="./submitLabel"
+            value="Submit"
+            required="{Boolean}true"/>
+
+          <useCaseType
+            jcr:primaryType="nt:unstructured"
+            sling:resourceType="granite/ui/components/coral/foundation/form/select"
+            fieldLabel="Wizard Type"
+            name="./useCaseType"
+            required="{Boolean}true">
+            <items jcr:primaryType="nt:unstructured">
+              <jobApplication 
+                jcr:primaryType="nt:unstructured" 
+                text="Job Application" 
+                value="jobApplication"/>
+              <eventRegistration 
+                jcr:primaryType="nt:unstructured" 
+                text="Event Registration" 
+                value="eventRegistration"/>
+              <customerSurvey 
+                jcr:primaryType="nt:unstructured" 
+                text="Customer Survey" 
+                value="customerSurvey"/>
+              <custom 
+                jcr:primaryType="nt:unstructured" 
+                text="Custom" 
+                value="custom"/>
+            </items>
+          </useCaseType>
+
+          <customSteps
+            jcr:primaryType="nt:unstructured"
+            sling:resourceType="granite/ui/components/coral/foundation/form/multifield"
+            fieldLabel="Custom Steps"
+            name="./customSteps"
+            granite:renderCondition="granite:renderCondition"
+            granite:renderConditionExpression="${useCaseType == 'custom'}">
+            <fieldConfig
+              jcr:primaryType="nt:unstructured"
+              sling:resourceType="granite/ui/components/coral/foundation/container">
+              <items jcr:primaryType="nt:unstructured">
+
+                <stepTitle
+                  jcr:primaryType="nt:unstructured"
+                  sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                  fieldLabel="Step Title"
+                  name="./title"/>
+
+                <fieldsJson
+                  jcr:primaryType="nt:unstructured"
+                  sling:resourceType="granite/ui/components/coral/foundation/form/textarea"
+                  fieldLabel="Fields JSON"
+                  name="./fieldsJson"
+                  granite:description='Enter JSON array of { "name":"...", "label":"...", "type":"text|email|number|select|textarea", "options":["opt1","opt2"] }'/>
+
+              </items>
+            </fieldConfig>
+          </customSteps>
+
+        </items>
+      </column>
+    </items>
+  </content>
+</cq:dialog>
